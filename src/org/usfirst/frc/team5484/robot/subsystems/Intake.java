@@ -16,7 +16,7 @@ public class Intake extends Subsystem {
     	intake.set(.5);
     }
     public void ejectCube() {
-    	intake.set(.8);
+    	intake.set(-.8);
     }
     public void stopIntake() {
     	intake.set(0);
