@@ -9,7 +9,6 @@ package org.usfirst.frc.team5484.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
@@ -21,8 +20,6 @@ import org.usfirst.frc.team5484.robot.commands.DriveWithJoysticks;
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class DriveTrain extends Subsystem {
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
 	private static final SpeedController left1 = RobotMap.driveTrainLeft1;	
     private static final SpeedController left2 = RobotMap.driveTrainLeft2;
     
@@ -36,32 +33,11 @@ public class DriveTrain extends Subsystem {
 	
 	public void initDefaultCommand() 
 	{
-		
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new DriveWithJoysticks());
 	}
 	
 	public void tankDrive()
 	{
-		robotDrive.tankDrive(Robot.m_oi.getDriverStickValue(1), Robot.m_oi.getDriverStickValue(5));
+		robotDrive.tankDrive(Robot.oi.getDriverStickValue(1), Robot.oi.getDriverStickValue(5));
 	}
-	
-//	public void TurnMotorClockwise(Joystick myJoystick) 
-//	{
-//			left1.set(myJoystick.getRawAxis(1));
-//			left2.set(myJoystick.getRawAxis(1));
-//			right1.set(myJoystick.getRawAxis(1));
-//			right2.set(myJoystick.getRawAxis(1));
-//	}
-//	
-//	public void TurnMotorCounterClockwise() {
-//		left1.set(-1);
-//		left2.set(-1);
-//	}
-//	
-//	public void StopMotor() {
-//		left1.set(0);
-//		left2.set(0);
-//	}
 }

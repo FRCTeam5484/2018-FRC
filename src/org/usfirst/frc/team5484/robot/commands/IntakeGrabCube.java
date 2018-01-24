@@ -1,19 +1,19 @@
 package org.usfirst.frc.team5484.robot.commands;
-
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5484.robot.Robot;
+import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveWithJoysticks extends Command {
+public class IntakeGrabCube extends Command {
 
-    public DriveWithJoysticks() {
-    	requires(Robot.driveTrain);
+    public IntakeGrabCube() {
+    	requires(Robot.intakeSystem);
     }
 
     protected void initialize() {
+    	Robot.intakeSystem.grabCube();
     }
 
     protected void execute() {
-    	Robot.driveTrain.tankDrive();
+    	
     }
 
     protected boolean isFinished() {
@@ -21,9 +21,10 @@ public class DriveWithJoysticks extends Command {
     }
 
     protected void end() {
+    	Robot.intakeSystem.stopIntake();
     }
 
     protected void interrupted() {
+    	end();
     }
-
 }
