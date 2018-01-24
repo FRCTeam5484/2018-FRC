@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 public class RobotMap {
 	// Drive Train Hardware
@@ -22,6 +23,7 @@ public class RobotMap {
     public static Ultrasonic driveTrainUltrasonic;
     public static Encoder driveTrainLeftEncoder;
     public static Encoder driveTrainRightEncoder;
+    public static ADXRS450_Gyro driveTrainGyro;
     
     // Intake Hardware
     public static SpeedController intakeMotor;
@@ -45,6 +47,8 @@ public class RobotMap {
         // Initialize Encoders On DriveTrain
         driveTrainLeftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
         driveTrainRightEncoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+        // Initialize Gyro on DriveTrain
+        driveTrainGyro = new ADXRS450_Gyro();
         // Initialize Intake Motor Controller
         intakeMotor = new Talon(4);
         intakeMotor.setInverted(true);

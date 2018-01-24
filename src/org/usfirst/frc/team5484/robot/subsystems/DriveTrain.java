@@ -7,10 +7,13 @@
 
 package org.usfirst.frc.team5484.robot.subsystems;
 
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.PIDController;
 
 import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
@@ -30,22 +33,21 @@ public class DriveTrain extends Subsystem {
 	private static final SpeedControllerGroup m_right = new SpeedControllerGroup(right1,right2);
 	
 	public static DifferentialDrive robotDrive = new DifferentialDrive(m_left,m_right);
+	public static ADXRS450_Gyro robotGyro = RobotMap.driveTrainGyro;
 	
-	public void initDefaultCommand() 
-	{
+	public void initDefaultCommand()	{
 		setDefaultCommand(new DriveWithJoysticks());
 	}
-	
-	public void tankDrive()
-	{
+	public void tankDrive()	{
 		robotDrive.tankDrive(Robot.oi.getDriverStickValue(1), Robot.oi.getDriverStickValue(5), true);
 	}
-	public void stopMotors()
-	{
+	public void stopMotors()	{
 		robotDrive.tankDrive(0, 0);
 	}
-	public void driveForward(double speed)
-	{
+	public void driveForward(double speed)	{
 		robotDrive.tankDrive(speed, speed, true);
+	}
+	public void driveStraight(double speed, int seconds)	{
+		
 	}
 }
