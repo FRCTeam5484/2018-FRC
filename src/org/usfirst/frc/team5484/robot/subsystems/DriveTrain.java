@@ -38,10 +38,14 @@ public class DriveTrain extends Subsystem {
 	
 	public void tankDrive()
 	{
-		robotDrive.tankDrive(Robot.oi.getDriverStickValue(1), Robot.oi.getDriverStickValue(5));
+		robotDrive.tankDrive(Robot.oi.getDriverStickValue(1), Robot.oi.getDriverStickValue(5), true);
 	}
 	public void stopMotors()
 	{
 		robotDrive.tankDrive(0, 0);
+	}
+	public void driveForward(double speed)
+	{
+		robotDrive.tankDrive(speed, speed, true);
 	}
 }
