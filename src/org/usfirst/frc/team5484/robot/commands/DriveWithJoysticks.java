@@ -21,9 +21,11 @@ public class DriveWithJoysticks extends Command {
     }
 
     protected void end() {
+    	
     }
 
     protected void interrupted() {
+    	end();
     }
 
 }

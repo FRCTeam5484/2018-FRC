@@ -40,4 +40,8 @@ public class DriveTrain extends Subsystem {
 	{
 		robotDrive.tankDrive(Robot.oi.getDriverStickValue(1), Robot.oi.getDriverStickValue(5));
 	}
+	public void stopMotors()
+	{
+		robotDrive.tankDrive(0, 0);
+	}
 }

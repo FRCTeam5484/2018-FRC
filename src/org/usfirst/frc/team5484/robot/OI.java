@@ -24,6 +24,7 @@ public class OI
 	public static JoystickButton button9;
 	public static JoystickButton button10;
 	
+	public static JoystickButton liftLevel1Button;
 	
     public static Joystick driverOne;
     public static Joystick driverTwo;
@@ -33,9 +34,11 @@ public class OI
         driverTwo = new Joystick(1);
         button9 = new JoystickButton(driverTwo, 9);
         button10 = new JoystickButton(driverTwo, 10);
+        liftLevel1Button = new JoystickButton(driverTwo, 1);
         
         button9.whileHeld(new IntakeGrabCube());
         button10.whileHeld(new IntakeEjectCube());
+        liftLevel1Button.whenPressed(new IntakeGrabCube());
         
         SmartDashboard.putData("Take Cube In", new IntakeGrabCube());
         SmartDashboard.putData("Eject Cube Out", new IntakeEjectCube());
