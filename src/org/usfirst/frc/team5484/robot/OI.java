@@ -34,7 +34,7 @@ public class OI
         button9 = new JoystickButton(driverTwo, 9);
         button10 = new JoystickButton(driverTwo, 10);
         
-        button9.whenPressed(new IntakeGrabCube());
+        button9.whileHeld(new IntakeGrabCube());
         button10.whileHeld(new IntakeEjectCube());
         
         SmartDashboard.putData("Take Cube In", new IntakeGrabCube());
