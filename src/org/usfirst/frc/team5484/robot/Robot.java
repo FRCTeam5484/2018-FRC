@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team5484.robot.commands.DriveForwardFor12Inches;
+import org.usfirst.frc.team5484.robot.commands.DriverForwardForOneSecond;
 import org.usfirst.frc.team5484.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5484.robot.subsystems.Intake;
 
@@ -20,8 +23,8 @@ public class Robot extends TimedRobot {
 	public static Intake intakeSystem;
 	public static OI oi;
 
-	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	Command autonomousCommand;
+	SendableChooser<Command> autoChooser = new SendableChooser<>();
 
 	@Override
 	public void robotInit() {
@@ -29,9 +32,10 @@ public class Robot extends TimedRobot {
 		driveTrain = new DriveTrain();
 		intakeSystem = new Intake();
 		oi = new OI();
-		//m_chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+
+		autoChooser.addDefault("Drive Forward", new DriveForwardFor12Inches());
+		autoChooser.addObject("Drive for 1 second", new DriverForwardForOneSecond());
+		SmartDashboard.putData("Auto mode", autoChooser);
 		
 	}
 
@@ -47,9 +51,9 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
+		autonomousCommand = autoChooser.getSelected();
+		if (autonomousCommand != null) {
+			autonomousCommand.start();
 		}
 	}
 
