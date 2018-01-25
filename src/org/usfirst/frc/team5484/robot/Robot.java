@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
 		autoChooser.addDefault("Drive Forward", new DriveForwardFor12Inches());
 		autoChooser.addObject("Drive for 1 second", new DriverForwardForOneSecond());
 		SmartDashboard.putData("Auto mode", autoChooser);
+		SmartDashboard.putNumber("Gyro", RobotMap.driveTrainGyro.getAngle());
 		
 	}
 

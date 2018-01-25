@@ -27,18 +27,16 @@ public class DriveToAngle extends Command {
     	Robot.driveTrain.turnToAngle(requestedSpeed, requestedAngle * Kp);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	return isBetween(robotGyro.getAngle(), requestedAngle+2, requestedAngle-2);
     }
 
-    // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveTrain.stopMotors();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
     
     public static boolean isBetween(double numberToCheck, double firstNumber, double secondNumber) {

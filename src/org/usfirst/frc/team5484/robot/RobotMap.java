@@ -20,9 +20,9 @@ public class RobotMap {
     public static SpeedController driveTrainLeft2;    
     public static SpeedController driveTrainRight1;
     public static SpeedController driveTrainRight2;
-    public static Ultrasonic driveTrainUltrasonic;
-    public static Encoder driveTrainLeftEncoder;
-    public static Encoder driveTrainRightEncoder;
+    //public static Ultrasonic driveTrainUltrasonic;
+    //public static Encoder driveTrainLeftEncoder;
+    //public static Encoder driveTrainRightEncoder;
     public static ADXRS450_Gyro driveTrainGyro;
     
     // Intake Hardware
@@ -44,11 +44,11 @@ public class RobotMap {
         driveTrainRight2 = new Talon(1);
         driveTrainRight2.setInverted(false);
         // Initialize Ultrasonic Range Finder
-        driveTrainUltrasonic = new Ultrasonic(1,1);
-        driveTrainUltrasonic.setAutomaticMode(true);
-        // Initialize Encoders On DriveTrain
-        driveTrainLeftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-        driveTrainRightEncoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+//        driveTrainUltrasonic = new Ultrasonic(1,1);
+//        driveTrainUltrasonic.setAutomaticMode(true);
+//        // Initialize Encoders On DriveTrain
+//        driveTrainLeftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+//        driveTrainRightEncoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
         // Initialize Gyro on DriveTrain
         driveTrainGyro = new ADXRS450_Gyro();
         // Initialize Intake Motor Controller

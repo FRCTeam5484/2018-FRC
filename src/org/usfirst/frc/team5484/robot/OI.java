@@ -40,7 +40,7 @@ public class OI
         grabCubeButton.whileHeld(new IntakeGrabCube());
         ejectCubeButton.whileHeld(new IntakeEjectCube());
         liftLevel1Button.whenPressed(new IntakeGrabCube());
-        turn90Degrees.whenPressed(new DriveToAngle(.5,90));
+        turn90Degrees.whenPressed(new DriveToAngle(.2,90));
         
         SmartDashboard.putData("Take Cube In", new IntakeGrabCube());
         SmartDashboard.putData("Eject Cube Out", new IntakeEjectCube());
