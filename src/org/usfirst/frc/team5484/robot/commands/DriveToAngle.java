@@ -4,16 +4,24 @@ import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveToAngle extends Command {
-	public static ADXRS450_Gyro robotGyro = RobotMap.driveTrainGyro;
-	private static final double Kp = 0.03;
-	private static double requestedSpeed;
-	private static double requestedAngle;
+public class DriveToAngle extends Command implements PIDOutput {
+	ADXRS450_Gyro robotGyro = RobotMap.driveTrainGyro;
+	PIDController turnController;
+	double requestedSpeed;
+	double requestedAngle;
+	double rotateToAngleRate;
+	final double kP = 0.03;
+	final double kI = 0.00;
+	final double kD = 0.00;
+	final double kF = 0.00;
+	final double kToleranceDegrees = 2.0f;
 	
     public DriveToAngle(double speed, double targetAngle) {
     	requires(Robot.driveTrain);
@@ -22,13 +30,20 @@ public class DriveToAngle extends Command {
     }
     protected void initialize() {
     	robotGyro.reset();
+    	turnController = new PIDController(kP, kI, kD, kF, robotGyro, this);
+        turnController.setInputRange(-180.0f,  180.0f);
+        turnController.setOutputRange(-1.0, 1.0);
+        turnController.setAbsoluteTolerance(kToleranceDegrees);
+        turnController.setContinuous(true);
+        turnController.setSetpoint(requestedAngle);
+        turnController.enable();
     }
     protected void execute() {
-    	Robot.driveTrain.turnToAngle(requestedSpeed, requestedAngle * Kp);
+    	Robot.driveTrain.turnToAngle(requestedSpeed, rotateToAngleRate);
     }
 
     protected boolean isFinished() {
-    	return isBetween(robotGyro.getAngle(), requestedAngle+2, requestedAngle-2);
+    	return false;
     }
 
     protected void end() {
@@ -38,8 +53,8 @@ public class DriveToAngle extends Command {
     protected void interrupted() {
     	end();
     }
-    
-    public static boolean isBetween(double numberToCheck, double firstNumber, double secondNumber) {
-        return secondNumber > firstNumber ? numberToCheck > firstNumber && numberToCheck < secondNumber : numberToCheck > secondNumber && numberToCheck < firstNumber;
+    @Override
+    public void pidWrite(double output) {
+        rotateToAngleRate = output;
     }
 }
