@@ -43,7 +43,7 @@ public class DriveToAngle extends Command implements PIDOutput {
     }
 
     protected boolean isFinished() {
-    	return false;
+    	return rotateToAngleRate == 0;
     }
 
     protected void end() {
