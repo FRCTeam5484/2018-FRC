@@ -50,4 +50,7 @@ public class DriveTrain extends Subsystem {
 	public void turnToAngle(double speed, double angle)	{
 		robotDrive.arcadeDrive(speed, angle);
 	}
+	public void driveStraight(double speed, double angle)	{
+		robotDrive.arcadeDrive(speed, angle);
+	}
 }
