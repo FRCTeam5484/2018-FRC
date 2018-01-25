@@ -23,11 +23,14 @@ public class DriveToAngle extends Command implements PIDOutput {
 	final double kF = 0.00;
 	final double kToleranceDegrees = 2.0f;
 	
-    public DriveToAngle(double speed, double targetAngle) {
+    // Gets speed and angle and stores is for PIDController
+	public DriveToAngle(double speed, double targetAngle) {
     	requires(Robot.driveTrain);
     	requestedSpeed = speed;
     	requestedAngle = targetAngle;
     }
+    
+	// Sets all the parameters for the PIDController
     protected void initialize() {
     	robotGyro.reset();
     	turnController = new PIDController(kP, kI, kD, kF, robotGyro, this);
@@ -38,10 +41,13 @@ public class DriveToAngle extends Command implements PIDOutput {
         turnController.setSetpoint(requestedAngle);
         turnController.enable();
     }
+    
+    // Turn robot at rate
     protected void execute() {
     	Robot.driveTrain.turnToAngle(requestedSpeed, rotateToAngleRate);
     }
-
+    
+    // If not asking to turn, its finished
     protected boolean isFinished() {
     	return rotateToAngleRate == 0;
     }
@@ -53,6 +59,8 @@ public class DriveToAngle extends Command implements PIDOutput {
     protected void interrupted() {
     	end();
     }
+    
+    // Sets the rate to rotate to the PID calculation
     @Override
     public void pidWrite(double output) {
         rotateToAngleRate = output;
