@@ -33,11 +33,11 @@ public class DriveTrain extends Subsystem {
 	private static final SpeedControllerGroup m_right = new SpeedControllerGroup(right1,right2);
 	
 	public static DifferentialDrive robotDrive = new DifferentialDrive(m_left,m_right);
-	public static ADXRS450_Gyro robotGyro = RobotMap.driveTrainGyro;
-	
+		
 	public void initDefaultCommand()	{
 		setDefaultCommand(new DriveWithJoysticks());
 	}
+    
 	public void tankDrive()	{
 		robotDrive.tankDrive(Robot.oi.getDriverStickValue(1), Robot.oi.getDriverStickValue(5), true);
 	}
@@ -45,9 +45,9 @@ public class DriveTrain extends Subsystem {
 		robotDrive.tankDrive(0, 0);
 	}
 	public void driveForward(double speed)	{
-		robotDrive.tankDrive(speed, speed, true);
+		robotDrive.arcadeDrive(speed, 0);
 	}
-	public void driveStraight(double speed, int seconds)	{
-		
+	public void turnToAngle(double speed, double angle)	{
+		robotDrive.arcadeDrive(speed, angle);
 	}
 }

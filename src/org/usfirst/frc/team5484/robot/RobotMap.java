@@ -27,6 +27,8 @@ public class RobotMap {
     
     // Intake Hardware
     public static SpeedController intakeMotor;
+    
+    // Lift Hardware
     public static AnalogPotentiometer intakePOT;
     
     

@@ -20,9 +20,9 @@ public class OI
 	public static JoystickButton button5;
 	public static JoystickButton button6;
 	public static JoystickButton button7;
-	public static JoystickButton button8;
-	public static JoystickButton button9;
-	public static JoystickButton button10;
+	public static JoystickButton turn90Degrees;
+	public static JoystickButton grabCubeButton;
+	public static JoystickButton ejectCubeButton;
 	
 	public static JoystickButton liftLevel1Button;
 	
@@ -32,20 +32,20 @@ public class OI
     public OI() {
         driverOne = new Joystick(0);
         driverTwo = new Joystick(1);
-        button9 = new JoystickButton(driverTwo, 9);
-        button10 = new JoystickButton(driverTwo, 10);
+        grabCubeButton = new JoystickButton(driverTwo, 9);
+        ejectCubeButton = new JoystickButton(driverTwo, 10);
         liftLevel1Button = new JoystickButton(driverTwo, 1);
+        turn90Degrees = new JoystickButton(driverOne, 1);
         
-        button9.whileHeld(new IntakeGrabCube());
-        button10.whileHeld(new IntakeEjectCube());
+        grabCubeButton.whileHeld(new IntakeGrabCube());
+        ejectCubeButton.whileHeld(new IntakeEjectCube());
         liftLevel1Button.whenPressed(new IntakeGrabCube());
+        turn90Degrees.whenPressed(new DriveToAngle(.5,90));
         
         SmartDashboard.putData("Take Cube In", new IntakeGrabCube());
         SmartDashboard.putData("Eject Cube Out", new IntakeEjectCube());
     }
-//    public Joystick getbuttonBox() {
-//        return driverOne;
-//    }
+    
     public double getDriverStickValue(int joyStickAxis){
     	return driverOne.getRawAxis(joyStickAxis);
     }
