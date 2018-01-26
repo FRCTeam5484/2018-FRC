@@ -45,7 +45,7 @@ public class DriveToAngle extends Command implements PIDOutput {
     
     // Turn robot at rate
     protected void execute() {
-    	Robot.driveTrain.turnToAngle(requestedSpeed, rotateToAngleRate);
+    	Robot.driveTrain.turnToAngle(.3, rotateToAngleRate);
     }
     
     // If not asking to turn, its finished

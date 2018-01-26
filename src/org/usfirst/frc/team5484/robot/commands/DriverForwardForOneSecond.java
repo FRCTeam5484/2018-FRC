@@ -8,19 +8,21 @@ import org.usfirst.frc.team5484.robot.Robot;
  *
  */
 public class DriverForwardForOneSecond extends Command {
-	Timer pastMilliseconds = new Timer();
+	Timer pastMilliseconds;
 	
     public DriverForwardForOneSecond() {
         requires(Robot.driveTrain);
     }
     protected void initialize() {
+    	pastMilliseconds = new Timer();
     	pastMilliseconds.start();
-    	Robot.driveTrain.driveForward(.5);
+    	
     }
     protected void execute() {
+    	Robot.driveTrain.driveForward(.5);
     }
     protected boolean isFinished() {
-        return (pastMilliseconds.get()/1000) > 1;
+        return pastMilliseconds.get() > 1;
     }
     protected void end() {
     	Robot.driveTrain.stopMotors();

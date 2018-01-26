@@ -21,7 +21,7 @@ public class DriveStraightInSeconds extends Command implements PIDOutput{
 	double rotateToAngleRate;
 	final double kP = 0.03;
 	final double kI = 0.00;
-	final double kD = 0.00;
+	final double kD = 1.00;
 	final double kF = 0.00;
 	final double kToleranceDegrees = 2.0f;
 	Timer timer;
@@ -34,6 +34,7 @@ public class DriveStraightInSeconds extends Command implements PIDOutput{
 
     protected void initialize() {
     	robotGyro.reset();
+    	timer = new Timer();
     	turnController = new PIDController(kP, kI, kD, kF, robotGyro, this);
         turnController.setInputRange(-180.0f,  180.0f);
         turnController.setOutputRange(-1.0, 1.0);
@@ -49,7 +50,7 @@ public class DriveStraightInSeconds extends Command implements PIDOutput{
     }
 
     protected boolean isFinished() {
-        return (timer.get()/1000) > requestedSeconds;
+        return timer.get() > requestedSeconds;
     }
 
     protected void end() {
