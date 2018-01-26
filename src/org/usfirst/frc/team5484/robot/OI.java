@@ -18,7 +18,7 @@ public class OI
 	public static JoystickButton button3;
 	public static JoystickButton button4;
 	public static JoystickButton button5;
-	public static JoystickButton button6;
+	public static JoystickButton makeASquare;
 	public static JoystickButton driveStraightFor1Second;
 	public static JoystickButton turn90Degrees;
 	public static JoystickButton grabCubeButton;
@@ -37,12 +37,14 @@ public class OI
         liftLevel1Button = new JoystickButton(driverTwo, 1);
         turn90Degrees = new JoystickButton(driverOne, 1);
         driveStraightFor1Second = new JoystickButton(driverOne, 2);
+        makeASquare = new JoystickButton(driverOne, 3);
         
         grabCubeButton.whileHeld(new IntakeGrabCube());
         ejectCubeButton.whileHeld(new IntakeEjectCube());
         liftLevel1Button.whenPressed(new IntakeGrabCube());
         turn90Degrees.whenPressed(new DriveToAngle(.1,90));
         driveStraightFor1Second.whenPressed(new DriveStraightInSeconds(.3, 1));
+        makeASquare.whenPressed(new MakeASquare());
         
         SmartDashboard.putData("Take Cube In", new IntakeGrabCube());
         SmartDashboard.putData("Eject Cube Out", new IntakeEjectCube());
