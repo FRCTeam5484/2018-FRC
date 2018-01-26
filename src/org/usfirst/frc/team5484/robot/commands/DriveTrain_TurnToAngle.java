@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveToAngle extends Command implements PIDOutput {
+public class DriveTrain_TurnToAngle extends Command implements PIDOutput {
 	
 	ADXRS450_Gyro robotGyro = RobotMap.driveTrainGyro;
 	PIDController turnController;
@@ -25,7 +25,7 @@ public class DriveToAngle extends Command implements PIDOutput {
 	final double kToleranceDegrees = 2.0f;
 	
     // Gets speed and angle and stores is for PIDController
-	public DriveToAngle(double speed, double targetAngle) {
+	public DriveTrain_TurnToAngle(double speed, double targetAngle) {
     	requires(Robot.driveTrain);
     	requestedSpeed = speed;
     	requestedAngle = targetAngle;
@@ -36,7 +36,7 @@ public class DriveToAngle extends Command implements PIDOutput {
     	robotGyro.reset();
     	turnController = new PIDController(kP, kI, kD, kF, robotGyro, this);
         turnController.setInputRange(-180.0f,  180.0f);
-        turnController.setOutputRange(-1.0, 1.0);
+        turnController.setOutputRange(-0.5, 0.5);
         turnController.setAbsoluteTolerance(kToleranceDegrees);
         turnController.setContinuous(true);
         turnController.setSetpoint(requestedAngle);
@@ -45,7 +45,7 @@ public class DriveToAngle extends Command implements PIDOutput {
     
     // Turn robot at rate
     protected void execute() {
-    	Robot.driveTrain.turnToAngle(.3, rotateToAngleRate);
+    	Robot.driveTrain.turnToAngle(rotateToAngleRate);
     }
     
     // If not asking to turn, its finished

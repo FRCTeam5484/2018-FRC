@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.PIDController;
 
 import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
-import org.usfirst.frc.team5484.robot.commands.DriveWithJoysticks;
+import org.usfirst.frc.team5484.robot.commands.DriveTrain_TeleopMode;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -35,7 +35,7 @@ public class DriveTrain extends Subsystem {
 	public static DifferentialDrive robotDrive = new DifferentialDrive(m_left,m_right);
 		
 	public void initDefaultCommand()	{
-		setDefaultCommand(new DriveWithJoysticks());
+		setDefaultCommand(new DriveTrain_TeleopMode());
 	}
     
 	public void tankDrive()	{
@@ -47,8 +47,8 @@ public class DriveTrain extends Subsystem {
 	public void driveForward(double speed)	{
 		robotDrive.arcadeDrive(speed, 0);
 	}
-	public void turnToAngle(double speed, double angle)	{
-		robotDrive.arcadeDrive(-speed, angle);
+	public void turnToAngle(double angle)	{
+		robotDrive.arcadeDrive(0, angle);
 	}
 	public void driveStraight(double speed, double angle)	{
 		robotDrive.arcadeDrive(-speed, angle);

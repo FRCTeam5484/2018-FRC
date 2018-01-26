@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5484.robot.commands.DriveForwardFor12Inches;
-import org.usfirst.frc.team5484.robot.commands.DriverForwardForOneSecond;
+import org.usfirst.frc.team5484.robot.commands.DriveTrain_GoForwardFor12Inches;
+import org.usfirst.frc.team5484.robot.commands.DriveTrain_GoForwardForOneSecond;
 import org.usfirst.frc.team5484.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5484.robot.subsystems.Intake;
 
@@ -33,8 +33,8 @@ public class Robot extends TimedRobot {
 		intakeSystem = new Intake();
 		oi = new OI();
 
-		autoChooser.addDefault("Drive Forward", new DriveForwardFor12Inches());
-		autoChooser.addObject("Drive for 1 second", new DriverForwardForOneSecond());
+		autoChooser.addDefault("Drive Forward", new DriveTrain_GoForwardFor12Inches());
+		autoChooser.addObject("Drive for 1 second", new DriveTrain_GoForwardForOneSecond());
 		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putNumber("Gyro", RobotMap.driveTrainGyro.getAngle());
 		

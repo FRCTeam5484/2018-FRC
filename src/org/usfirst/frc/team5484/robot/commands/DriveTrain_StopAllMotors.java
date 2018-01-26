@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class stopAllMotors extends Command {
+public class DriveTrain_StopAllMotors extends Command {
 
-    public stopAllMotors() {
+    public DriveTrain_StopAllMotors() {
         requires(Robot.driveTrain);
     }
 

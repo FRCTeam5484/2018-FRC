@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveStraightInSeconds extends Command implements PIDOutput{
+public class DriveTrain_GoStraightBySeconds extends Command implements PIDOutput{
 
 	ADXRS450_Gyro robotGyro = RobotMap.driveTrainGyro;
 	PIDController turnController;
@@ -26,7 +26,7 @@ public class DriveStraightInSeconds extends Command implements PIDOutput{
 	final double kToleranceDegrees = 2.0f;
 	Timer timer;
 	
-    public DriveStraightInSeconds(double speed, double seconds) {
+    public DriveTrain_GoStraightBySeconds(double speed, double seconds) {
     	requires(Robot.driveTrain);
     	requestedSpeed = speed;
     	requestedSeconds = seconds;
@@ -36,8 +36,8 @@ public class DriveStraightInSeconds extends Command implements PIDOutput{
     	robotGyro.reset();
     	timer = new Timer();
     	turnController = new PIDController(kP, kI, kD, kF, robotGyro, this);
-        turnController.setInputRange(-180.0f,  180.0f);
-        turnController.setOutputRange(-1.0, 1.0);
+        turnController.setInputRange(-45.0f,  45.0f);
+        turnController.setOutputRange(-0.5, 0.5);
         turnController.setAbsoluteTolerance(kToleranceDegrees);
         turnController.setContinuous(true);
         turnController.setSetpoint(0);

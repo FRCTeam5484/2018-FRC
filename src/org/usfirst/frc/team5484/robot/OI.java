@@ -41,17 +41,17 @@ public class OI
         stopMotors = new JoystickButton(driverOne, 4);
         driveForward = new JoystickButton(driverOne, 8);
         
-        grabCubeButton.whileHeld(new IntakeGrabCube());
-        ejectCubeButton.whileHeld(new IntakeEjectCube());
-        liftLevel1Button.whenPressed(new IntakeGrabCube());
-        turn90Degrees.whenPressed(new DriveToAngle(.2,90));
-        driveStraightFor1Second.whenPressed(new DriveStraightInSeconds(.5, 1));
-        makeASquare.whenPressed(new MakeASquare());
-        stopMotors.whenPressed(new stopAllMotors());
-        driveForward.whenPressed(new DriverForwardForOneSecond());
+        grabCubeButton.whileHeld(new Intake_GrabCube());
+        ejectCubeButton.whileHeld(new Intake_EjectCube());
+        liftLevel1Button.whenPressed(new Intake_GrabCube());
+        turn90Degrees.whenPressed(new DriveTrain_TurnToAngle(.2,90));
+        driveStraightFor1Second.whenPressed(new DriveTrain_GoStraightBySeconds(.5, 1));
+        makeASquare.whenPressed(new CommandGroup_DriveInASquare());
+        stopMotors.whenPressed(new DriveTrain_StopAllMotors());
+        driveForward.whenPressed(new DriveTrain_GoForwardForOneSecond());
         
-        SmartDashboard.putData("Take Cube In", new IntakeGrabCube());
-        SmartDashboard.putData("Eject Cube Out", new IntakeEjectCube());
+        SmartDashboard.putData("Take Cube In", new Intake_GrabCube());
+        SmartDashboard.putData("Eject Cube Out", new Intake_EjectCube());
     }
     
     public double getDriverStickValue(int joyStickAxis){

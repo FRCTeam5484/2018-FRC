@@ -1,29 +1,33 @@
 package org.usfirst.frc.team5484.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5484.robot.Robot;
-import org.usfirst.frc.team5484.robot.RobotMap;
+
 /**
  *
  */
-public class DriveForwardFor12Inches extends Command {
-
-	double startDistance;
+public class DriveTrain_GoForwardForOneSecond extends Command {
+	Timer pastMilliseconds;
 	
-    public DriveForwardFor12Inches() {
+    public DriveTrain_GoForwardForOneSecond() {
         requires(Robot.driveTrain);
     }
     protected void initialize() {
-    	//startDistance = RobotMap.driveTrainUltrasonic.getRangeInches();
-    	Robot.driveTrain.driveForward(.5);
+    	pastMilliseconds = new Timer();
+    	pastMilliseconds.start();
+    	
     }
     protected void execute() {
+    	Robot.driveTrain.driveForward(.5);
     }
     protected boolean isFinished() {
-    	return false;//return (startDistance-RobotMap.driveTrainUltrasonic.getRangeInches()) > 12;
+        return pastMilliseconds.get() > 1;
     }
     protected void end() {
     	Robot.driveTrain.stopMotors();
+    	pastMilliseconds.stop();
+    	pastMilliseconds.reset();
     }
     protected void interrupted() {
     	end();
