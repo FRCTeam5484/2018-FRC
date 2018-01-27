@@ -44,7 +44,7 @@ public class OI
         grabCubeButton.whileHeld(new Intake_GrabCube());
         ejectCubeButton.whileHeld(new Intake_EjectCube());
         liftLevel1Button.whenPressed(new Intake_GrabCube());
-        turn90Degrees.whenPressed(new DriveTrain_TurnToAngle(.2,90));
+        turn90Degrees.whenPressed(new DriveTrain_TurnToAngle(90));
         driveStraightFor1Second.whenPressed(new DriveTrain_GoStraightBySeconds(.5, 1));
         makeASquare.whenPressed(new CommandGroup_DriveInASquare());
         stopMotors.whenPressed(new DriveTrain_StopAllMotors());

@@ -21,7 +21,7 @@ public class DriveTrain_GoStraightBySeconds extends Command implements PIDOutput
 	double rotateToAngleRate;
 	final double kP = 0.03;
 	final double kI = 0.00;
-	final double kD = 1.00;
+	final double kD = 0.00;
 	final double kF = 0.00;
 	final double kToleranceDegrees = 2.0f;
 	Timer timer;
@@ -37,7 +37,7 @@ public class DriveTrain_GoStraightBySeconds extends Command implements PIDOutput
     	timer = new Timer();
     	turnController = new PIDController(kP, kI, kD, kF, robotGyro, this);
         turnController.setInputRange(-45.0f,  45.0f);
-        turnController.setOutputRange(-0.5, 0.5);
+        turnController.setOutputRange(-0.9, 0.9);
         turnController.setAbsoluteTolerance(kToleranceDegrees);
         turnController.setContinuous(true);
         turnController.setSetpoint(0);
