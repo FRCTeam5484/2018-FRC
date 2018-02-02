@@ -8,8 +8,10 @@
 package org.usfirst.frc.team5484.robot;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.Spark;
 //import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 //import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -26,23 +28,25 @@ public class RobotMap {
     public static ADXRS450_Gyro driveTrainGyro;
     
     // Intake Hardware
-    public static SpeedController intakeMotor;
+    public static SpeedController intakeMotorLeft;
+    public static SpeedController intakeMotorRight;
+    public static SpeedControllerGroup intakeSystem;
     
     // Lift Hardware
     public static AnalogPotentiometer intakePOT;
+    public static SpeedController liftMotor;
+    
+    // Hang Hardware
+    public static SpeedController hangMotor;
     
     
     public static void init() {
     	// Initialize Left Motor Controllers
-        driveTrainLeft1 = new Talon(2);
-        driveTrainLeft1.setInverted(true);
-        driveTrainLeft2 = new Talon(3);
-        driveTrainLeft2.setInverted(true);
+        driveTrainLeft1 = new Spark(0);
+        driveTrainLeft2 = new Spark(1);
         // Initialize Right Motor Controllers
-        driveTrainRight1 = new Talon(0);
-        driveTrainRight1.setInverted(false);
-        driveTrainRight2 = new Talon(1);
-        driveTrainRight2.setInverted(false);
+        driveTrainRight1 = new Spark(2);
+        driveTrainRight2 = new Spark(3);
         // Initialize Ultrasonic Range Finder
 //        driveTrainUltrasonic = new Ultrasonic(1,1);
 //        driveTrainUltrasonic.setAutomaticMode(true);
@@ -52,9 +56,13 @@ public class RobotMap {
         // Initialize Gyro on DriveTrain
         driveTrainGyro = new ADXRS450_Gyro();
         // Initialize Intake Motor Controller
-        intakeMotor = new Talon(4);
-        intakeMotor.setInverted(true);
+        intakeMotorLeft = new Talon(4);
+        intakeMotorRight = new Talon(5);
+        intakeMotorRight.setInverted(true);
+        intakeSystem = new SpeedControllerGroup(intakeMotorLeft, intakeMotorRight);
         // Initialize Intake POT
-        intakePOT = new AnalogPotentiometer(0, 84, 1);
+        //intakePOT = new AnalogPotentiometer(0, 84, 1);
+        liftMotor = new Talon(6);
+        hangMotor = new Talon(7);
     }
 }

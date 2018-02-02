@@ -13,42 +13,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI 
 {
-	public static JoystickButton button1;
-	public static JoystickButton button2;
-	public static JoystickButton button3;
-	public static JoystickButton driveForward;
-	public static JoystickButton stopMotors;
-	public static JoystickButton makeASquare;
-	public static JoystickButton driveStraightFor1Second;
-	public static JoystickButton turn90Degrees;
+	public static JoystickButton raiseLiftButton;
+	public static JoystickButton lowerLiftButton;
 	public static JoystickButton grabCubeButton;
 	public static JoystickButton ejectCubeButton;
 	
 	public static JoystickButton liftLevel1Button;
 	
     public static Joystick driverOne;
-    public static Joystick driverTwo;
+    //public static Joystick driverTwo;
 
     public OI() {
         driverOne = new Joystick(0);
-        driverTwo = new Joystick(1);
-        grabCubeButton = new JoystickButton(driverTwo, 9);
-        ejectCubeButton = new JoystickButton(driverTwo, 10);
-        liftLevel1Button = new JoystickButton(driverTwo, 1);
-        turn90Degrees = new JoystickButton(driverOne, 1);
-        driveStraightFor1Second = new JoystickButton(driverOne, 2);
-        makeASquare = new JoystickButton(driverOne, 3);
-        stopMotors = new JoystickButton(driverOne, 4);
-        driveForward = new JoystickButton(driverOne, 8);
+        grabCubeButton = new JoystickButton(driverOne, 1);
+        ejectCubeButton = new JoystickButton(driverOne, 2);
+        raiseLiftButton = new JoystickButton(driverOne, 3);
+        lowerLiftButton = new JoystickButton(driverOne, 4);
         
         grabCubeButton.whileHeld(new Intake_GrabCube());
         ejectCubeButton.whileHeld(new Intake_EjectCube());
-        liftLevel1Button.whenPressed(new Intake_GrabCube());
-        turn90Degrees.whenPressed(new DriveTrain_TurnToAngle(90));
-        driveStraightFor1Second.whenPressed(new DriveTrain_GoStraightBySeconds(.5, 1));
-        makeASquare.whenPressed(new CommandGroup_DriveInASquare());
-        stopMotors.whenPressed(new DriveTrain_StopAllMotors());
-        driveForward.whenPressed(new DriveTrain_GoForwardForOneSecond());
+        raiseLiftButton.whileHeld(new RaiseCube());
+        lowerLiftButton.whileHeld(new LowerCube());
         
         SmartDashboard.putData("Take Cube In", new Intake_GrabCube());
         SmartDashboard.putData("Eject Cube Out", new Intake_EjectCube());

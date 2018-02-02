@@ -16,7 +16,6 @@ public class Intake_GrabCube extends Command {
     }
 
     protected void execute() {
-    	
     }
 
     protected boolean isFinished() {
