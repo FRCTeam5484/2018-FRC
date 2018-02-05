@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
+
+import com.mach.LightDrive.LightDriveCAN;
+
 //import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
@@ -39,6 +42,9 @@ public class RobotMap {
     // Hang Hardware
     public static SpeedController hangMotor;
     
+    // LED Indicator Controller (LightDrive12)
+    public static LightDriveCAN ledIndicators;
+    
     
     public static void init() {
     	// Initialize Left Motor Controllers
@@ -64,5 +70,7 @@ public class RobotMap {
         //intakePOT = new AnalogPotentiometer(0, 84, 1);
         liftMotor = new Talon(6);
         hangMotor = new Talon(7);
+        // Initialize LightDrive12
+        ledIndicators = new LightDriveCAN();
     }
 }
