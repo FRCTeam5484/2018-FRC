@@ -49,10 +49,14 @@ public class RobotMap {
     public static void init() {
     	// Initialize Left Motor Controllers
         driveTrainLeft1 = new Spark(0);
+        driveTrainLeft1.setInverted(true);
         driveTrainLeft2 = new Spark(1);
+        driveTrainLeft2.setInverted(true);
         // Initialize Right Motor Controllers
         driveTrainRight1 = new Spark(2);
+        driveTrainRight1.setInverted(true);
         driveTrainRight2 = new Spark(3);
+        driveTrainRight2.setInverted(true);
         // Initialize Ultrasonic Range Finder
 //        driveTrainUltrasonic = new Ultrasonic(1,1);
 //        driveTrainUltrasonic.setAutomaticMode(true);

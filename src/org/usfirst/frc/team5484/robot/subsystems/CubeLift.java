@@ -17,10 +17,10 @@ public class CubeLift extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void raiseLift() {
-    	lift.set(.5);
+    	lift.set(1);
     }
     public void lowerLift() {
-    	lift.set(-.5);
+    	lift.set(-1);
     }
     public void stopLift() {
     	lift.set(0);
