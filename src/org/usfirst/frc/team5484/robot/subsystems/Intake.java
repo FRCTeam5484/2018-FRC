@@ -15,7 +15,7 @@ public class Intake extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void grabCube() {
-    	intake.set(.5);
+    	intake.set(.7);
     }
     public void ejectCube() {
     	intake.set(-.8);
@@ -24,4 +24,3 @@ public class Intake extends Subsystem {
     	intake.set(0);
     }
 }
-

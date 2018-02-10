@@ -26,4 +26,3 @@ public class CubeLift extends Subsystem {
     	lift.set(0);
     }
 }
-

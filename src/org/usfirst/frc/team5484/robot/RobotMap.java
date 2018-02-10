@@ -67,6 +67,7 @@ public class RobotMap {
         driveTrainGyro = new ADXRS450_Gyro();
         // Initialize Intake Motor Controller
         intakeMotorLeft = new Talon(4);
+        //intakeMotorLeft.setInverted(true);
         intakeMotorRight = new Talon(5);
         intakeMotorRight.setInverted(true);
         intakeSystem = new SpeedControllerGroup(intakeMotorLeft, intakeMotorRight);

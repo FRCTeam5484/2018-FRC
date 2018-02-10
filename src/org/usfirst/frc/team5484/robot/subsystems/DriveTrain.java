@@ -35,7 +35,9 @@ public class DriveTrain extends Subsystem {
 	}
     
 	public void tankDrive()	{
-		robotDrive.tankDrive(Robot.oi.getDriverStickValue(1), Robot.oi.getDriverStickValue(5), true);
+		double leftSide = Robot.oi.getDriverStickValue(1)*.9;
+		double rightSide = Robot.oi.getDriverStickValue(5)*.9;
+		robotDrive.tankDrive(leftSide, rightSide, true);
 	}
 	public void stopMotors()	{
 		robotDrive.arcadeDrive(0, 0);

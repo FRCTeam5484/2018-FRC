@@ -21,14 +21,15 @@ public class OI
 	public static JoystickButton liftLevel1Button;
 	
     public static Joystick driverOne;
-    //public static Joystick driverTwo;
+    public static Joystick driverTwo;
 
     public OI() {
         driverOne = new Joystick(0);
-        grabCubeButton = new JoystickButton(driverOne, 1);
-        ejectCubeButton = new JoystickButton(driverOne, 2);
-        raiseLiftButton = new JoystickButton(driverOne, 3);
-        lowerLiftButton = new JoystickButton(driverOne, 4);
+        driverTwo = new Joystick(1);
+        grabCubeButton = new JoystickButton(driverTwo, 1);
+        ejectCubeButton = new JoystickButton(driverTwo, 2);
+        raiseLiftButton = new JoystickButton(driverTwo, 3);
+        lowerLiftButton = new JoystickButton(driverTwo, 4);
         
         grabCubeButton.whileHeld(new Intake_GrabCube());
         ejectCubeButton.whileHeld(new Intake_EjectCube());
