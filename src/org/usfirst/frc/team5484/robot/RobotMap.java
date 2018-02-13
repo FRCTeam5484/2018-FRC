@@ -47,7 +47,7 @@ public class RobotMap {
     public static LightDriveCAN ledIndicators;
     
     // Limitswitches 
-    public static DigitalInput topLimitSwitch;
+    public static DigitalInput liftTopLimitSwitch;
     
     
     public static void init() {
@@ -82,15 +82,11 @@ public class RobotMap {
         // Initialize LightDrive12
         ledIndicators = new LightDriveCAN();
         // Initialize Limitswitches
-        topLimitSwitch = new DigitalInput(0);
+        liftTopLimitSwitch = new DigitalInput(0);
     }
     
     public static boolean isTopLimitReached()
     {
-    	return !topLimitSwitch.get();
-    }
-    public static boolean isBottomLimitReached()
-    {
-    	return !topLimitSwitch.get();
+    	return !liftTopLimitSwitch.get();
     }
 }

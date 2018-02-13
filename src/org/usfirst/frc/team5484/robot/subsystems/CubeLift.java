@@ -22,7 +22,14 @@ public class CubeLift extends Subsystem {
     }
     public void moveLift() {
     	//System.out.println("Stick Value: " + -Robot.oi.getDriverTwoStickValue(1));
-    	lift.set(-Robot.oi.getDriverTwoStickValue(1));
+    	double speedValue = -Robot.oi.getDriverTwoStickValue(1);
+    	if(RobotMap.isTopLimitReached() && speedValue > 0)
+    	{
+    		stopLift();
+    	}
+    	else {
+    		lift.set(speedValue);
+    	}
     }
     public void raiseLift() {
     	lift.set(1);
