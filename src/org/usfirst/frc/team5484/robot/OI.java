@@ -26,10 +26,11 @@ public class OI
     public OI() {
         driverOne = new Joystick(0);
         driverTwo = new Joystick(1);
-        grabCubeButton = new JoystickButton(driverTwo, 1);
-        ejectCubeButton = new JoystickButton(driverTwo, 2);
-        raiseLiftButton = new JoystickButton(driverTwo, 3);
-        lowerLiftButton = new JoystickButton(driverTwo, 4);
+        grabCubeButton = new JoystickButton(driverTwo, 9);
+        ejectCubeButton = new JoystickButton(driverTwo, 10);        
+        raiseLiftButton = new JoystickButton(driverTwo, 1);
+        lowerLiftButton = new JoystickButton(driverTwo, 2);
+        
         
         grabCubeButton.whileHeld(new Intake_GrabCube());
         ejectCubeButton.whileHeld(new Intake_EjectCube());
@@ -40,8 +41,11 @@ public class OI
         SmartDashboard.putData("Eject Cube Out", new Intake_EjectCube());
     }
     
-    public double getDriverStickValue(int joyStickAxis){
+    public double getDriverOneStickValue(int joyStickAxis){
     	return driverOne.getRawAxis(joyStickAxis);
+    }
+    public double getDriverTwoStickValue(int joyStickAxis){
+    	return driverTwo.getRawAxis(joyStickAxis);
     }
     
 }

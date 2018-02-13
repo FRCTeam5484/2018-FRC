@@ -1,7 +1,12 @@
 package org.usfirst.frc.team5484.robot.subsystems;
 
+import org.usfirst.frc.team5484.robot.OI;
+import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
+import org.usfirst.frc.team5484.robot.commands.Lift_TeleopMode;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -11,10 +16,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class CubeLift extends Subsystem {
 
     public static final SpeedController lift = RobotMap.liftMotor;
-
+    
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new Lift_TeleopMode());
+    }
+    public void moveLift() {
+    	//System.out.println("Stick Value: " + -Robot.oi.getDriverTwoStickValue(1));
+    	lift.set(-Robot.oi.getDriverTwoStickValue(1));
     }
     public void raiseLift() {
     	lift.set(1);

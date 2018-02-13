@@ -5,23 +5,26 @@ import org.usfirst.frc.team5484.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RaiseCube extends Command {
-	
-	public RaiseCube() {
-    	requires(Robot.cubeLift);
+public class Lift_TeleopMode extends Command {
+
+    public Lift_TeleopMode() {
+        requires(Robot.cubeLift);
     }
+
     protected void initialize() {
-    	Robot.cubeLift.raiseLift();
     }
+
     protected void execute() {
-    	
+    	Robot.cubeLift.moveLift();
     }
+
     protected boolean isFinished() {
-        return RobotMap.isTopLimitReached();
+    	return false;
     }
+
     protected void end() {
-    	Robot.cubeLift.stopLift();
     }
+
     protected void interrupted() {
     	end();
     }

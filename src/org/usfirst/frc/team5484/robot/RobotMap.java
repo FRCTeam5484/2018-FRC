@@ -8,6 +8,7 @@
 package org.usfirst.frc.team5484.robot;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 //import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -45,6 +46,9 @@ public class RobotMap {
     // LED Indicator Controller (LightDrive12)
     public static LightDriveCAN ledIndicators;
     
+    // Limitswitches 
+    public static DigitalInput topLimitSwitch;
+    
     
     public static void init() {
     	// Initialize Left Motor Controllers
@@ -77,5 +81,16 @@ public class RobotMap {
         hangMotor = new Talon(7);
         // Initialize LightDrive12
         ledIndicators = new LightDriveCAN();
+        // Initialize Limitswitches
+        topLimitSwitch = new DigitalInput(0);
+    }
+    
+    public static boolean isTopLimitReached()
+    {
+    	return !topLimitSwitch.get();
+    }
+    public static boolean isBottomLimitReached()
+    {
+    	return !topLimitSwitch.get();
     }
 }
