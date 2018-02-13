@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LowerCube extends Command {
 
     public LowerCube() {
-        requires(Robot.cubeLift);
+        requires(Robot.liftSystem);
     }
     protected void initialize() {
-    	Robot.cubeLift.lowerLift();
+    	Robot.liftSystem.lowerLift();
     }
     protected void execute() {
     }
@@ -21,7 +21,7 @@ public class LowerCube extends Command {
         return false;
     }
     protected void end() {
-    	Robot.cubeLift.stopLift();
+    	Robot.liftSystem.stopLift();
     }
     protected void interrupted() {
     	end();

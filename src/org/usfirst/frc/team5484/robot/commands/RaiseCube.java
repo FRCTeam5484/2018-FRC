@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RaiseCube extends Command {
 	
 	public RaiseCube() {
-    	requires(Robot.cubeLift);
+    	requires(Robot.liftSystem);
     }
     protected void initialize() {
-    	Robot.cubeLift.raiseLift();
+    	Robot.liftSystem.raiseLift();
     }
     protected void execute() {
     	
@@ -20,7 +20,7 @@ public class RaiseCube extends Command {
         return RobotMap.isTopLimitReached();
     }
     protected void end() {
-    	Robot.cubeLift.stopLift();
+    	Robot.liftSystem.stopLift();
     }
     protected void interrupted() {
     	end();

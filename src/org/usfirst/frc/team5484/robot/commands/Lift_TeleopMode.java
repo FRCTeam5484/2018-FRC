@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Lift_TeleopMode extends Command {
 
     public Lift_TeleopMode() {
-        requires(Robot.cubeLift);
+        requires(Robot.liftSystem);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	Robot.cubeLift.moveLift();
+    	Robot.liftSystem.moveLift();
     }
 
     protected boolean isFinished() {

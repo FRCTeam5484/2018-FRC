@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5484.robot.commands.DriveTrain_GoForwardFor12Inches;
 import org.usfirst.frc.team5484.robot.commands.DriveTrain_GoForwardForOneSecond;
-import org.usfirst.frc.team5484.robot.subsystems.CubeLift;
+import org.usfirst.frc.team5484.robot.subsystems.Lift;
 import org.usfirst.frc.team5484.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5484.robot.subsystems.Intake;
 
@@ -24,7 +24,7 @@ import com.mach.LightDrive.Color;
 public class Robot extends TimedRobot {
 	public static DriveTrain driveTrain;
 	public static Intake intakeSystem;
-	public static CubeLift cubeLift;
+	public static Lift liftSystem;
 	public static OI oi;
 	public int ledCounter = 0;
 
@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
 		RobotMap.init();
 		driveTrain = new DriveTrain();
 		intakeSystem = new Intake();
-		cubeLift = new CubeLift();
+		liftSystem = new Lift();
 		oi = new OI();
 
 		autoChooser.addDefault("Drive Forward", new DriveTrain_GoForwardFor12Inches());

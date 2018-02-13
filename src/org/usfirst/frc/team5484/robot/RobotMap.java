@@ -14,11 +14,13 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
 import com.mach.LightDrive.LightDriveCAN;
 
 //import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 public class RobotMap {
 	// Drive Train Hardware
@@ -35,20 +37,18 @@ public class RobotMap {
     public static SpeedController intakeMotorLeft;
     public static SpeedController intakeMotorRight;
     public static SpeedControllerGroup intakeSystem;
+    public static DigitalInput intakeLimitSwitch;
     
     // Lift Hardware
-    public static AnalogPotentiometer intakePOT;
     public static SpeedController liftMotor;
+    public static DigitalInput liftTopLimitSwitch;
+    public static Potentiometer liftPOT;
     
     // Hang Hardware
     public static SpeedController hangMotor;
     
     // LED Indicator Controller (LightDrive12)
     public static LightDriveCAN ledIndicators;
-    
-    // Limitswitches 
-    public static DigitalInput liftTopLimitSwitch;
-    
     
     public static void init() {
     	// Initialize Left Motor Controllers
@@ -69,24 +69,35 @@ public class RobotMap {
 //        driveTrainRightEncoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
         // Initialize Gyro on DriveTrain
         driveTrainGyro = new ADXRS450_Gyro();
-        // Initialize Intake Motor Controller
+        
+        // Initialize Intake Hardware
         intakeMotorLeft = new Talon(4);
-        //intakeMotorLeft.setInverted(true);
         intakeMotorRight = new Talon(5);
         intakeMotorRight.setInverted(true);
         intakeSystem = new SpeedControllerGroup(intakeMotorLeft, intakeMotorRight);
-        // Initialize Intake POT
-        //intakePOT = new AnalogPotentiometer(0, 84, 1);
+        intakeLimitSwitch = new DigitalInput(1);
+        
+        // Initialize Lift Hardware
         liftMotor = new Talon(6);
+        liftTopLimitSwitch = new DigitalInput(0);
+        liftPOT = new AnalogPotentiometer(0, 108, 2);
+        
         hangMotor = new Talon(7);
+        
         // Initialize LightDrive12
         ledIndicators = new LightDriveCAN();
-        // Initialize Limitswitches
-        liftTopLimitSwitch = new DigitalInput(0);
-    }
-    
+                
+    }    
     public static boolean isTopLimitReached()
     {
     	return !liftTopLimitSwitch.get();
+    }
+    public static double getLiftPOTValue() 
+    {
+    	return liftPOT.get();
+    }
+    public static boolean isCubeSeated()
+    {
+    	return !intakeLimitSwitch.get();
     }
 }
