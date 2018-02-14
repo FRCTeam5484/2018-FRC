@@ -15,8 +15,8 @@ public class Lift_MoveToPosition extends Command {
     public Lift_MoveToPosition(double positionValue) {
         requires(Robot.liftSystem);
         desiredPosition = positionValue;
-        highLevel = desiredPosition + 5;
-        lowLevel = desiredPosition - 5;
+        highLevel = desiredPosition + 2;
+        lowLevel = desiredPosition - 2;
         //System.out.println("Passed Value: " + positionValue + "  HighLevel: " + highLevel + "  LowLevel: " + lowLevel);
     }
 
