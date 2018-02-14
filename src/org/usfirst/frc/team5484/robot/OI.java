@@ -13,12 +13,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI 
 {
-	public static JoystickButton raiseLiftButton;
-	public static JoystickButton lowerLiftButton;
 	public static JoystickButton grabCubeButton;
 	public static JoystickButton ejectCubeButton;
 	
 	public static JoystickButton liftLevel1Button;
+	public static JoystickButton liftLevel2Button;
+	public static JoystickButton liftLevel3Button;
+	public static JoystickButton liftLevel4Button;
+	public static JoystickButton liftLevel5Button;
+	public static JoystickButton liftLevel6Button;
+	
+	public static JoystickButton liftSTOP;
 	
     public static Joystick driverOne;
     public static Joystick driverTwo;
@@ -26,16 +31,33 @@ public class OI
     public OI() {
         driverOne = new Joystick(0);
         driverTwo = new Joystick(1);
+        
+        liftLevel1Button = new JoystickButton(driverTwo, 2);
+        liftLevel1Button.whenPressed(new Lift_MoveToPosition(101));
+        
+        liftLevel2Button = new JoystickButton(driverTwo, 3);
+        liftLevel2Button.whenPressed(new Lift_MoveToPosition(85));
+        
+        liftLevel3Button = new JoystickButton(driverTwo, 4);
+        liftLevel3Button.whenPressed(new Lift_MoveToPosition(61));
+        
+        liftLevel4Button = new JoystickButton(driverTwo, 6);
+        liftLevel4Button.whenPressed(new Lift_MoveToPosition(52));
+        
+        liftLevel5Button = new JoystickButton(driverTwo, 7);
+        liftLevel5Button.whenPressed(new Lift_MoveToPosition(44));
+        
+        liftLevel6Button = new JoystickButton(driverTwo, 8);
+        liftLevel6Button.whenPressed(new Lift_MoveToPosition(35));
+        
+        liftSTOP = new JoystickButton(driverTwo, 1);
+        liftSTOP.whenPressed(new Lift_StopLift());
+        
         grabCubeButton = new JoystickButton(driverTwo, 9);
-        ejectCubeButton = new JoystickButton(driverTwo, 10);        
-        raiseLiftButton = new JoystickButton(driverTwo, 1);
-        lowerLiftButton = new JoystickButton(driverTwo, 2);
-        
-        
         grabCubeButton.whileHeld(new Intake_GrabCube());
-        ejectCubeButton.whileHeld(new Intake_EjectCube());
-        raiseLiftButton.whileHeld(new RaiseCube());
-        lowerLiftButton.whileHeld(new LowerCube());
+        
+        ejectCubeButton = new JoystickButton(driverTwo, 10);
+        ejectCubeButton.whileHeld(new Intake_EjectCube());        
         
         SmartDashboard.putData("Take Cube In", new Intake_GrabCube());
         SmartDashboard.putData("Eject Cube Out", new Intake_EjectCube());

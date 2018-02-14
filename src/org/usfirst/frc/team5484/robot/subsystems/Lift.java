@@ -21,7 +21,7 @@ public class Lift extends Subsystem {
         setDefaultCommand(new Lift_TeleopMode());
     }
     public void moveLift() {
-    	//System.out.println("Stick Value: " + -Robot.oi.getDriverTwoStickValue(1));
+    	System.out.println("Limit Switch: " + RobotMap.isTopLimitReached());
     	double speedValue = -Robot.oi.getDriverTwoStickValue(1);
     	if(RobotMap.isTopLimitReached() && speedValue > 0)
     	{
