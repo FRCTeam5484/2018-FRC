@@ -17,12 +17,17 @@ public class Intake_TeleopMode extends Command {
     protected void execute() {
     	double leftTrigger = Robot.oi.driverOne.getTriggerAxis(Hand.kLeft);
     	double rightTrigger = Robot.oi.driverOne.getTriggerAxis(Hand.kRight);
-    	if(leftTrigger > .2)
+    	
+    	if(rightTrigger > .05)
     	{
-    		Robot.intakeSystem.grabCube(leftTrigger);
+    		Robot.intakeSystem.grabCube(rightTrigger);
     	}
-    	else if (rightTrigger > .2) {
-    		Robot.intakeSystem.ejectCube(-rightTrigger);
+    	else if (leftTrigger > .05) {
+    		Robot.intakeSystem.ejectCube(leftTrigger);
+    	}
+    	else
+    	{
+    		Robot.intakeSystem.stopIntake();
     	}
     }
 

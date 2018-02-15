@@ -2,6 +2,7 @@ package org.usfirst.frc.team5484.robot;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Spark;
 //import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -19,8 +20,7 @@ public class RobotMap {
     public static SpeedController driveTrainRight1;
     public static SpeedController driveTrainRight2;
     //public static Ultrasonic driveTrainUltrasonic;
-    //public static Encoder driveTrainLeftEncoder;
-    //public static Encoder driveTrainRightEncoder;
+    public static Encoder driveTrainRightEncoder;
     public static ADXRS450_Gyro driveTrainGyro;
     
     // Intake Hardware
@@ -32,6 +32,7 @@ public class RobotMap {
     // Lift Hardware
     public static SpeedController liftMotor;
     public static DigitalInput liftTopLimitSwitch;
+    public static DigitalInput liftBottomLimitSwitch;
     public static AnalogPotentiometer liftPOT;
     
     // Hang Hardware
@@ -54,9 +55,8 @@ public class RobotMap {
         // Initialize Ultrasonic Range Finder
 //        driveTrainUltrasonic = new Ultrasonic(1,1);
 //        driveTrainUltrasonic.setAutomaticMode(true);
-//        // Initialize Encoders On DriveTrain
-//        driveTrainLeftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-//        driveTrainRightEncoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+        // Initialize Encoders On DriveTrain
+        driveTrainRightEncoder = new Encoder(3, 4, true, Encoder.EncodingType.k4X);
         // Initialize Gyro on DriveTrain
         driveTrainGyro = new ADXRS450_Gyro();
         
@@ -65,11 +65,12 @@ public class RobotMap {
         intakeMotorRight = new Talon(5);
         intakeMotorRight.setInverted(true);
         intakeSystem = new SpeedControllerGroup(intakeMotorLeft, intakeMotorRight);
-        intakeLimitSwitch = new DigitalInput(1);
+        intakeLimitSwitch = new DigitalInput(2);
         
         // Initialize Lift Hardware
         liftMotor = new Talon(6);
         liftTopLimitSwitch = new DigitalInput(0);
+        liftBottomLimitSwitch = new DigitalInput(1);
         liftPOT = new AnalogPotentiometer(0, 108, 2);
         
         hangMotor = new Talon(7);
@@ -81,6 +82,10 @@ public class RobotMap {
     public static boolean isTopLimitReached()
     {
     	return !liftTopLimitSwitch.get();
+    }
+    public static boolean isBottomLimitReached()
+    {
+    	return !liftBottomLimitSwitch.get();
     }
     public static boolean isCubeSeated()
     {

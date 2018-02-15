@@ -17,6 +17,8 @@ public class OI
 	public static JoystickButton driverOneButton_GrabCube;
 	public static JoystickButton driverOneButton_EjectCube;
 	
+	public static JoystickButton driverTwoButton_StopLift;
+	public static JoystickButton driverTwoButton_DropLift;
 	public static JoystickButton driverTwoButton_LiftSwitch;
 	public static JoystickButton driverTwoButton_LiftLowScale;
 	public static JoystickButton driverTwoButton_LiftMidScale;
@@ -42,6 +44,12 @@ public class OI
     	driverOneButton_EjectCube.whileHeld(new Intake_EjectCube(.7));
         
         // Driver Two Functions
+    	driverTwoButton_StopLift = new JoystickButton(driverTwo, 1);
+    	driverTwoButton_StopLift.whenPressed(new Lift_StopLift());
+    	
+    	driverTwoButton_DropLift = new JoystickButton(driverTwo, 2);
+    	driverTwoButton_DropLift.whenPressed(new Lift_DropLift());
+    	
     	driverTwoButton_LiftSwitch = new JoystickButton(driverTwo, 4);
     	driverTwoButton_LiftSwitch.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.Switch.potValue()));
         

@@ -25,7 +25,7 @@ public class Lift extends PIDSubsystem {
     }
     public void moveLift() {
     	double speedValue = -Robot.oi.getDriverTwoStickValue(1);
-    	if(RobotMap.isTopLimitReached() && speedValue > 0)
+    	if(RobotMap.isTopLimitReached() && speedValue > 0 || RobotMap.isBottomLimitReached() && speedValue < 0)
     	{
     		stopLift();
     	}
@@ -56,6 +56,13 @@ public class Lift extends PIDSubsystem {
     }
     @Override
     protected void usePIDOutput(double output) {
-        liftMotor.pidWrite(-output);
+    	double reverseOutput = -output;
+    	if(RobotMap.isTopLimitReached() && reverseOutput > 0 || RobotMap.isBottomLimitReached() && reverseOutput < 0)
+    	{
+    		stopLift();
+    	}
+    	else {
+    		liftMotor.pidWrite(reverseOutput);
+    	}
     }
 }

@@ -41,9 +41,14 @@ public class DriveTrain extends Subsystem {
 		double potValue = liftPOT.get();
 		double leftSide = Robot.oi.getDriverOneStickValue(1);
 		double rightSide = Robot.oi.getDriverOneStickValue(5);
-		if(potValue > 80)
+		if(potValue > 90)
 		{
-			// run at full power
+			// Full Power;
+		}
+		else if(potValue > 80)
+		{
+			leftSide = leftSide*.8;
+			rightSide = rightSide*.8;
 		}
 		else if(potValue > 57)
 		{
