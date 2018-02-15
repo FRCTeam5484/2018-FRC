@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package org.usfirst.frc.team5484.robot;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -14,13 +7,10 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
-
 import com.mach.LightDrive.LightDriveCAN;
 
 //import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.AnalogInput;
 
 public class RobotMap {
 	// Drive Train Hardware
@@ -95,5 +85,29 @@ public class RobotMap {
     public static boolean isCubeSeated()
     {
     	return !intakeLimitSwitch.get();
+    }
+    public enum LiftLevel {
+    	Switch,
+    	LowScale,
+    	MidScale,
+    	HighScale,
+    	TopScale;
+    	
+    	double potValue() {
+    		switch(this) {
+    		case Switch:
+    			return 85;
+    		case LowScale:
+    			return 61;
+    		case MidScale:
+    			return 52;
+    		case HighScale:
+    			return 44;
+    		case TopScale:
+    			return 35;
+    		default:
+    			return 95;
+    		}
+    	}
     }
 }

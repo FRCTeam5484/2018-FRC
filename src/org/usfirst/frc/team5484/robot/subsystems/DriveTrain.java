@@ -9,6 +9,7 @@ package org.usfirst.frc.team5484.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import org.usfirst.frc.team5484.robot.Robot;
@@ -29,14 +30,36 @@ public class DriveTrain extends Subsystem {
 	private static final SpeedControllerGroup m_right = new SpeedControllerGroup(right1,right2);
 	
 	public static DifferentialDrive robotDrive = new DifferentialDrive(m_left,m_right);
+	
+	private static final AnalogPotentiometer liftPOT = RobotMap.liftPOT;
 		
 	public void initDefaultCommand()	{
 		setDefaultCommand(new DriveTrain_TeleopMode());
 	}
     
 	public void tankDrive()	{
-		double leftSide = Robot.oi.getDriverOneStickValue(1)*.9;
-		double rightSide = Robot.oi.getDriverOneStickValue(5)*.9;
+		double potValue = liftPOT.get();
+		double leftSide = Robot.oi.getDriverOneStickValue(1);
+		double rightSide = Robot.oi.getDriverOneStickValue(5);
+		if(potValue > 80)
+		{
+			// run at full power
+		}
+		else if(potValue > 57)
+		{
+			leftSide = leftSide*.7;
+			rightSide = rightSide*.7;
+		}
+		else if(potValue > 48)
+		{
+			leftSide = leftSide*.6;
+			rightSide = rightSide*.6;
+		}
+		else if(potValue > 0)
+		{
+			leftSide = leftSide*.5;
+			rightSide = rightSide*.5;
+		}		
 		robotDrive.tankDrive(leftSide, rightSide, true);
 	}
 	public void stopMotors() {

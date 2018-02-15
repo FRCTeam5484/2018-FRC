@@ -6,13 +6,15 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class Intake_GrabCube extends Command {
 
+	private double speedLevel;
 	
-    public Intake_GrabCube() {
+    public Intake_GrabCube(double powerLevel) {
     	requires(Robot.intakeSystem);
+    	speedLevel = powerLevel;
     }
 
     protected void initialize() {
-    	Robot.intakeSystem.grabCube();
+    	Robot.intakeSystem.grabCube(speedLevel);
     }
 
     protected void execute() {

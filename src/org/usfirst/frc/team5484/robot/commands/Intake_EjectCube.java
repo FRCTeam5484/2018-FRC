@@ -4,14 +4,15 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class Intake_EjectCube extends Command {
 	
+	private double speedLevel;
 	
-	
-    public Intake_EjectCube() {
+    public Intake_EjectCube(double powerLevel) {
     	requires(Robot.intakeSystem);
+    	speedLevel = powerLevel;
     }
     
     protected void initialize() {
-    	Robot.intakeSystem.ejectCube();
+    	Robot.intakeSystem.ejectCube(speedLevel);
     }
 
     protected void execute() {

@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import javax.print.DocFlavor.STRING;
+
 import org.usfirst.frc.team5484.robot.commands.DriveTrain_GoForwardFor12Inches;
 import org.usfirst.frc.team5484.robot.commands.DriveTrain_GoForwardForOneSecond;
 import org.usfirst.frc.team5484.robot.subsystems.Lift;
@@ -26,7 +28,8 @@ public class Robot extends TimedRobot {
 	public static Intake intakeSystem;
 	public static Lift liftSystem;
 	public static OI oi;
-	public int ledCounter = 0;
+	public static String RobotStatus = "Good";
+	public static String FieldSetup;
 
 	Command autonomousCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -38,7 +41,7 @@ public class Robot extends TimedRobot {
 		intakeSystem = new Intake();
 		liftSystem = new Lift();
 		oi = new OI();
-
+		
 		autoChooser.addDefault("Drive Forward", new DriveTrain_GoForwardFor12Inches());
 		autoChooser.addObject("Drive for 1 second", new DriveTrain_GoForwardForOneSecond());
 		SmartDashboard.putData("Auto mode", autoChooser);
@@ -48,9 +51,22 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledInit() {
-		RobotMap.ledIndicators.SetColor(1, Color.BLUE, (float) 0.5);
-		RobotMap.ledIndicators.SetColor(2, Color.RED, (float)0.5);
-		RobotMap.ledIndicators.Update();
+		if(RobotStatus.equals("Good"))
+		{
+			RobotMap.ledIndicators.SetColor(1, Color.GREEN, (float)0.5);
+			RobotMap.ledIndicators.SetColor(2, Color.GREEN, (float)0.5);
+			RobotMap.ledIndicators.SetColor(3, Color.GREEN, (float)0.5);
+			RobotMap.ledIndicators.SetColor(4, Color.GREEN, (float)0.5);
+			RobotMap.ledIndicators.Update();
+		}
+		else
+		{
+			RobotMap.ledIndicators.SetColor(1, Color.RED, (float)0.5);
+			RobotMap.ledIndicators.SetColor(2, Color.RED, (float)0.5);
+			RobotMap.ledIndicators.SetColor(3, Color.RED, (float)0.5);
+			RobotMap.ledIndicators.SetColor(4, Color.RED, (float)0.5);
+			RobotMap.ledIndicators.Update();
+		}
 	}
 
 	@Override
@@ -78,58 +94,14 @@ public class Robot extends TimedRobot {
 		}
 		RobotMap.ledIndicators.SetColor(1, Color.OFF);
 		RobotMap.ledIndicators.SetColor(2, Color.OFF);
+		RobotMap.ledIndicators.SetColor(3, Color.OFF);
+		RobotMap.ledIndicators.SetColor(4, Color.OFF);
 		RobotMap.ledIndicators.Update();
 	}
 
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
-		if(ledCounter++ < 100)
-		{
-			RobotMap.ledIndicators.SetColor(1, Color.RED);		
-		}
-		else if(ledCounter < 200)
-		{
-			RobotMap.ledIndicators.SetColor(1, Color.GREEN);	
-		}
-		else if(ledCounter < 400)
-		{
-			RobotMap.ledIndicators.SetColor(1, Color.BLUE);	
-		}
-		else if(ledCounter < 600)
-		{
-			RobotMap.ledIndicators.SetColor(1, Color.YELLOW);	
-		}
-		else if(ledCounter < 800)
-		{
-			RobotMap.ledIndicators.SetColor(1, Color.PURPLE);	
-		}
-		else if(ledCounter < 1000)
-		{
-			RobotMap.ledIndicators.SetColor(1, Color.TEAL);	
-		}
-		else if(ledCounter < 1200)
-		{
-			RobotMap.ledIndicators.SetColor(1, Color.WHITE);
-		}
-		else if(ledCounter < 1400)
-		{
-			RobotMap.ledIndicators.SetColor(1, Color.OFF);	
-		}
-		else if(ledCounter > 1600)
-		{
-			ledCounter = 0;
-		}
-		if(ledCounter % 2 == 0)
-		{
-			RobotMap.ledIndicators.SetColor(2, Color.RED);		
-		}
-		else
-		{
-			RobotMap.ledIndicators.SetColor(2, Color.BLUE);	
-		}
-		RobotMap.ledIndicators.Update();
-		
+		Scheduler.getInstance().run();		
 	}
 
 	@Override

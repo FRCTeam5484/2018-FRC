@@ -30,7 +30,7 @@ public class Lift extends PIDSubsystem {
     		stopLift();
     	}
     	else {
-    		if(.8 < speedValue || speedValue < -.8)
+    		if(speedValue > .8 || speedValue < -.8)
     		{
     			getPIDController().disable();
     			liftMotor.set(speedValue);

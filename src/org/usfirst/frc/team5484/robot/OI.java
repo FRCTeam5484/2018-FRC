@@ -10,59 +10,61 @@ import org.usfirst.frc.team5484.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.XboxController;
 
 public class OI 
 {
-	public static JoystickButton grabCubeButton;
-	public static JoystickButton ejectCubeButton;
+	public static JoystickButton driverOneButton_GrabCube;
+	public static JoystickButton driverOneButton_EjectCube;
 	
-	public static JoystickButton liftLevel1Button;
-	public static JoystickButton liftLevel2Button;
-	public static JoystickButton liftLevel3Button;
-	public static JoystickButton liftLevel4Button;
-	public static JoystickButton liftLevel5Button;
-	public static JoystickButton liftLevel6Button;
-	public static JoystickButton driverTwoIntakeGrabButton;
-	public static JoystickButton driverTwoIntakeEjectButton;
+	public static JoystickButton driverTwoButton_LiftSwitch;
+	public static JoystickButton driverTwoButton_LiftLowScale;
+	public static JoystickButton driverTwoButton_LiftMidScale;
+	public static JoystickButton driverTwoButton_LiftHighScale;
+	public static JoystickButton driverTwoButton_LiftTopScale;
+	public static JoystickButton driverTwoButton_IntakeGrab;
+	public static JoystickButton driverTwoButton_IntakeEject;
 	
 	public static JoystickButton liftSTOP;
 	
-    public static Joystick driverOne;
+    public static XboxController driverOne;
     public static Joystick driverTwo;
 
     public OI() {
-        driverOne = new Joystick(0);
-        driverTwo = new Joystick(1);
+    	driverOne = new XboxController(0);
+    	driverTwo = new Joystick(1);
         
-        grabCubeButton = new JoystickButton(driverOne, 5);
-        grabCubeButton.whileHeld(new Intake_GrabCube());
+        // Driver One Functions
+    	driverOneButton_GrabCube = new JoystickButton(driverOne, 5);
+    	driverOneButton_GrabCube.whileHeld(new Intake_GrabCube(.7));
         
-        ejectCubeButton = new JoystickButton(driverOne, 6);
-        ejectCubeButton.whileHeld(new Intake_EjectCube());
+    	driverOneButton_EjectCube = new JoystickButton(driverOne, 6);
+    	driverOneButton_EjectCube.whileHeld(new Intake_EjectCube(.7));
         
-        liftLevel2Button = new JoystickButton(driverTwo, 4);
-        liftLevel2Button.whenPressed(new Lift_MoveToPosition(85));
+        // Driver Two Functions
+    	driverTwoButton_LiftSwitch = new JoystickButton(driverTwo, 4);
+    	driverTwoButton_LiftSwitch.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.Switch.potValue()));
         
-        liftLevel3Button = new JoystickButton(driverTwo, 5);
-        liftLevel3Button.whenPressed(new Lift_MoveToPosition(61));
+    	driverTwoButton_LiftLowScale = new JoystickButton(driverTwo, 5);
+    	driverTwoButton_LiftLowScale.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.LowScale.potValue()));
         
-        liftLevel4Button = new JoystickButton(driverTwo, 6);
-        liftLevel4Button.whenPressed(new Lift_MoveToPosition(52));
+    	driverTwoButton_LiftMidScale = new JoystickButton(driverTwo, 6);
+    	driverTwoButton_LiftMidScale.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.MidScale.potValue()));
         
-        liftLevel5Button = new JoystickButton(driverTwo, 7);
-        liftLevel5Button.whenPressed(new Lift_MoveToPosition(44));
+    	driverTwoButton_LiftHighScale = new JoystickButton(driverTwo, 7);
+    	driverTwoButton_LiftHighScale.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.HighScale.potValue()));
         
-        liftLevel6Button = new JoystickButton(driverTwo, 8);
-        liftLevel6Button.whenPressed(new Lift_MoveToPosition(35));
+    	driverTwoButton_LiftTopScale = new JoystickButton(driverTwo, 8);
+    	driverTwoButton_LiftTopScale.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.TopScale.potValue()));
         
-        driverTwoIntakeGrabButton = new JoystickButton(driverTwo, 9);
-        driverTwoIntakeGrabButton.whileHeld(new Intake_GrabCube());
+    	driverTwoButton_IntakeGrab = new JoystickButton(driverTwo, 9);
+    	driverTwoButton_IntakeGrab.whileHeld(new Intake_GrabCube(.7));
         
-        driverTwoIntakeEjectButton = new JoystickButton(driverTwo, 10);
-        driverTwoIntakeEjectButton.whileHeld(new Intake_EjectCube());
+    	driverTwoButton_IntakeEject = new JoystickButton(driverTwo, 10);
+    	driverTwoButton_IntakeEject.whileHeld(new Intake_EjectCube(.7));
                 
-        SmartDashboard.putData("Take Cube In", new Intake_GrabCube());
-        SmartDashboard.putData("Eject Cube Out", new Intake_EjectCube());
+        SmartDashboard.putData("Take Cube In", new Intake_GrabCube(.7));
+        SmartDashboard.putData("Eject Cube Out", new Intake_EjectCube(.7));
     }
     
     public double getDriverOneStickValue(int joyStickAxis){
