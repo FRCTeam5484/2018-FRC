@@ -22,6 +22,8 @@ public class OI
 	public static JoystickButton liftLevel4Button;
 	public static JoystickButton liftLevel5Button;
 	public static JoystickButton liftLevel6Button;
+	public static JoystickButton driverTwoIntakeGrabButton;
+	public static JoystickButton driverTwoIntakeEjectButton;
 	
 	public static JoystickButton liftSTOP;
 	
@@ -31,6 +33,12 @@ public class OI
     public OI() {
         driverOne = new Joystick(0);
         driverTwo = new Joystick(1);
+        
+        grabCubeButton = new JoystickButton(driverOne, 5);
+        grabCubeButton.whileHeld(new Intake_GrabCube());
+        
+        ejectCubeButton = new JoystickButton(driverOne, 6);
+        ejectCubeButton.whileHeld(new Intake_EjectCube());
         
         liftLevel1Button = new JoystickButton(driverTwo, 2);
         liftLevel1Button.whenPressed(new Lift_MoveToPosition(101));
@@ -50,14 +58,14 @@ public class OI
         liftLevel6Button = new JoystickButton(driverTwo, 8);
         liftLevel6Button.whenPressed(new Lift_MoveToPosition(35));
         
-        liftSTOP = new JoystickButton(driverTwo, 1);
-        liftSTOP.whenPressed(new Lift_StopLift());
+        driverTwoIntakeGrabButton = new JoystickButton(driverTwo, 9);
+        driverTwoIntakeGrabButton.whileHeld(new Intake_GrabCube());
         
-        grabCubeButton = new JoystickButton(driverTwo, 9);
-        grabCubeButton.whileHeld(new Intake_GrabCube());
+        driverTwoIntakeEjectButton = new JoystickButton(driverTwo, 10);
+        driverTwoIntakeEjectButton.whileHeld(new Intake_EjectCube());
         
-        ejectCubeButton = new JoystickButton(driverTwo, 10);
-        ejectCubeButton.whileHeld(new Intake_EjectCube());        
+//        liftSTOP = new JoystickButton(driverTwo, 1);
+//        liftSTOP.whenPressed(new Lift_StopLift());
         
         SmartDashboard.putData("Take Cube In", new Intake_GrabCube());
         SmartDashboard.putData("Eject Cube Out", new Intake_EjectCube());

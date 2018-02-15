@@ -3,10 +3,13 @@ package org.usfirst.frc.team5484.robot.commands;
 import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Lift_TeleopMode extends Command {
 
+	//public static final Joystick driverOne = Robot.oi.driverOne;
+	
     public Lift_TeleopMode() {
         requires(Robot.liftSystem);
     }
@@ -15,6 +18,7 @@ public class Lift_TeleopMode extends Command {
     }
 
     protected void execute() {
+    	//Robot.liftSystem.disable();
     	Robot.liftSystem.moveLift();
     }
 

@@ -1,43 +1,61 @@
 package org.usfirst.frc.team5484.robot.subsystems;
 
-import org.usfirst.frc.team5484.robot.OI;
 import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
 import org.usfirst.frc.team5484.robot.commands.Lift_TeleopMode;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
-/**
- *
- */
-public class Lift extends Subsystem {
+public class Lift extends PIDSubsystem {
 
-    public static final SpeedController lift = RobotMap.liftMotor;
+	private final AnalogPotentiometer liftPOT = RobotMap.liftPOT;	
+    public static final SpeedController liftMotor = RobotMap.liftMotor;
+    
+    public Lift()
+    {
+    	super("Lift", 1.0, 0.0, 0.0);
+        setAbsoluteTolerance(3);
+        getPIDController().setContinuous(false);
+    }
     
     public void initDefaultCommand() {
         setDefaultCommand(new Lift_TeleopMode());
     }
     public void moveLift() {
-    	System.out.println("Limit Switch: " + RobotMap.isTopLimitReached());
     	double speedValue = -Robot.oi.getDriverTwoStickValue(1);
     	if(RobotMap.isTopLimitReached() && speedValue > 0)
     	{
     		stopLift();
     	}
     	else {
-    		lift.set(speedValue);
+    		if(.8 < speedValue || speedValue < -.8)
+    		{
+    			getPIDController().disable();
+    			liftMotor.set(speedValue);
+    		}
+    		else
+    		{
+    			liftMotor.set(0);
+    		}
     	}
     }
     public void raiseLift() {
-    	lift.set(1);
+    	liftMotor.set(1);
     }
     public void lowerLift() {
-    	lift.set(-1);
+    	liftMotor.set(-1);
     }
     public void stopLift() {
-    	lift.set(0);
+    	liftMotor.set(0);
+    }
+    @Override
+    protected double returnPIDInput() {
+        return liftPOT.get();
+    }
+    @Override
+    protected void usePIDOutput(double output) {
+        liftMotor.pidWrite(-output);
     }
 }

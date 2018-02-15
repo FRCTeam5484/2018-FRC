@@ -42,7 +42,7 @@ public class RobotMap {
     // Lift Hardware
     public static SpeedController liftMotor;
     public static DigitalInput liftTopLimitSwitch;
-    public static Potentiometer liftPOT;
+    public static AnalogPotentiometer liftPOT;
     
     // Hang Hardware
     public static SpeedController hangMotor;
@@ -91,10 +91,6 @@ public class RobotMap {
     public static boolean isTopLimitReached()
     {
     	return !liftTopLimitSwitch.get();
-    }
-    public static double getLiftPOTValue() 
-    {
-    	return liftPOT.get();
     }
     public static boolean isCubeSeated()
     {
