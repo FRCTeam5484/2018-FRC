@@ -7,13 +7,20 @@
 
 package org.usfirst.frc.team5484.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 
-import javax.print.DocFlavor.STRING;
+import java.util.Random;
 
 import org.usfirst.frc.team5484.robot.commands.DriveTrain_GoForwardFor12Inches;
 import org.usfirst.frc.team5484.robot.commands.DriveTrain_GoForwardForOneSecond;
@@ -42,10 +49,40 @@ public class Robot extends TimedRobot {
 		liftSystem = new Lift();
 		oi = new OI();
 		
+		if(DriverStation.getInstance().isFMSAttached())
+		{
+			FieldSetup = DriverStation.getInstance().getGameSpecificMessage();
+		}
+		else
+		{
+			Random r = new Random();
+			String options = "LR";
+			FieldSetup = Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))); 
+		}
+		
+		new Thread(() -> {
+            UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+            camera.setResolution(640, 480);
+            
+            CvSink cvSink = CameraServer.getInstance().getVideo();
+            CvSource outputStream = CameraServer.getInstance().putVideo("IntakeCamera", 640, 480);
+            
+            Mat source = new Mat();
+            Mat output = new Mat();
+            
+            while(!Thread.interrupted()) {
+                cvSink.grabFrame(source);
+                Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+                outputStream.putFrame(output);
+            }
+        }).start();
+		
 		autoChooser.addDefault("Drive Forward", new DriveTrain_GoForwardFor12Inches());
 		autoChooser.addObject("Drive for 1 second", new DriveTrain_GoForwardForOneSecond());
 		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putNumber("Gyro", RobotMap.driveTrainGyro.getAngle());
+		SmartDashboard.putString("Field Setup: ", FieldSetup);
+		SmartDashboard.putNumber("Lift POT: ", RobotMap.liftPOT.get());
 		
 	}
 
