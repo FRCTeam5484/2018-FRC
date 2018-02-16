@@ -13,8 +13,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.cscore.UsbCamera;
 
 import java.util.Random;
 
@@ -56,10 +54,7 @@ public class Robot extends TimedRobot {
 			FieldSetup = Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))); 
 		}
 		
-		UsbCamera camera;
-		camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setResolution(640, 480);
-		camera.setFPS(5);
+		//CameraServer.getInstance().startAutomaticCapture();
 		
 		autoChooser.addDefault("Drive Forward", new DriveTrain_GoForwardFor12Inches());
 		autoChooser.addObject("Drive for 1 second", new DriveTrain_GoForwardForOneSecond());
@@ -74,20 +69,21 @@ public class Robot extends TimedRobot {
 	public void disabledInit() {
 		if(RobotStatus.equals("Good"))
 		{
-			RobotMap.ledIndicators.SetColor(1, Color.GREEN, (float)0.5);
-			RobotMap.ledIndicators.SetColor(2, Color.GREEN, (float)0.5);
-			RobotMap.ledIndicators.SetColor(3, Color.GREEN, (float)0.5);
-			RobotMap.ledIndicators.SetColor(4, Color.GREEN, (float)0.5);
+			RobotMap.ledIndicators.SetColor(1, Color.GREEN);
+			RobotMap.ledIndicators.SetColor(2, Color.GREEN);
+			RobotMap.ledIndicators.SetColor(3, Color.GREEN);
+			RobotMap.ledIndicators.SetColor(4, Color.GREEN);
 			RobotMap.ledIndicators.Update();
 		}
 		else
 		{
-			RobotMap.ledIndicators.SetColor(1, Color.RED, (float)0.5);
-			RobotMap.ledIndicators.SetColor(2, Color.RED, (float)0.5);
-			RobotMap.ledIndicators.SetColor(3, Color.RED, (float)0.5);
-			RobotMap.ledIndicators.SetColor(4, Color.RED, (float)0.5);
+			RobotMap.ledIndicators.SetColor(1, Color.RED);
+			RobotMap.ledIndicators.SetColor(2, Color.RED);
+			RobotMap.ledIndicators.SetColor(3, Color.RED);
+			RobotMap.ledIndicators.SetColor(4, Color.RED);
 			RobotMap.ledIndicators.Update();
 		}
+		
 	}
 
 	@Override

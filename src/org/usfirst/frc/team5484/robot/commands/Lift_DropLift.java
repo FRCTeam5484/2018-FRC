@@ -12,6 +12,7 @@ public class Lift_DropLift extends Command {
     }
 
     protected void initialize() {
+    	Robot.liftSystem.disable();
     	Robot.liftSystem.lowerLift();
     }
 
@@ -19,7 +20,7 @@ public class Lift_DropLift extends Command {
     }
 
     protected boolean isFinished() {
-    	if(RobotMap.isBottomLimitReached() || RobotMap.liftPOT.get() > 100)
+    	if(RobotMap.isBottomLimitReached() || RobotMap.liftPOT.get() > 95)
     	{
     		return true;
     	}

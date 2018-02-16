@@ -4,6 +4,8 @@ import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
 import org.usfirst.frc.team5484.robot.commands.Lift_TeleopMode;
 
+import com.mach.LightDrive.Color;
+
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -28,8 +30,12 @@ public class Lift extends PIDSubsystem {
     	if(RobotMap.isTopLimitReached() && speedValue > 0 || RobotMap.isBottomLimitReached() && speedValue < 0)
     	{
     		stopLift();
+    		RobotMap.ledIndicators.SetColor(2, Color.RED);
+    		RobotMap.ledIndicators.Update();
     	}
     	else {
+    		RobotMap.ledIndicators.SetColor(2, Color.GREEN);
+    		RobotMap.ledIndicators.Update();
     		if(speedValue > .8 || speedValue < -.8)
     		{
     			getPIDController().disable();
@@ -59,6 +65,8 @@ public class Lift extends PIDSubsystem {
     	double reverseOutput = -output;
     	if(RobotMap.isTopLimitReached() && reverseOutput > 0 || RobotMap.isBottomLimitReached() && reverseOutput < 0)
     	{
+    		RobotMap.ledIndicators.SetColor(2, Color.RED);
+    		RobotMap.ledIndicators.Update();
     		stopLift();
     	}
     	else {
