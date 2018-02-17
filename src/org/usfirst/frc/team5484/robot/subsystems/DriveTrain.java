@@ -14,11 +14,9 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
+import org.usfirst.frc.team5484.robot.RobotMap.LiftLevel;
 import org.usfirst.frc.team5484.robot.commands.DriveTrain_TeleopMode;
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */
 public class DriveTrain extends Subsystem {
 	private static final SpeedController left1 = RobotMap.driveTrainLeft1;	
     private static final SpeedController left2 = RobotMap.driveTrainLeft2;
@@ -41,31 +39,38 @@ public class DriveTrain extends Subsystem {
 		double potValue = liftPOT.get();
 		double leftSide = Robot.oi.getDriverOneStickValue(1);
 		double rightSide = Robot.oi.getDriverOneStickValue(5);
-		if(potValue > 90)
+		if(potValue > 80)
 		{
 			// Full Power;
 		}
-		else if(potValue > 80)
+		else if(potValue > 70)
+		{
+			leftSide = leftSide*.9;
+			rightSide = rightSide*.9;
+		}
+		else if(potValue > 50)
 		{
 			leftSide = leftSide*.8;
 			rightSide = rightSide*.8;
 		}
-		else if(potValue > 57)
+		else if(potValue > 38)
 		{
 			leftSide = leftSide*.7;
 			rightSide = rightSide*.7;
 		}
-		else if(potValue > 48)
+		else if(potValue > 30)
 		{
 			leftSide = leftSide*.6;
 			rightSide = rightSide*.6;
-		}
-		else if(potValue > 0)
+		}	
+		else if (potValue < 0)
 		{
-			leftSide = leftSide*.5;
-			rightSide = rightSide*.5;
-		}		
+			// Full Power
+		}
 		robotDrive.tankDrive(leftSide, rightSide, true);
+		RobotMap.driveTrainRightEncoder.setDistancePerPulse(-0.058);
+		System.out.println(RobotMap.driveTrainRightEncoder.getDistance());
+
 	}
 	public void stopMotors() {
 		robotDrive.arcadeDrive(0, 0);

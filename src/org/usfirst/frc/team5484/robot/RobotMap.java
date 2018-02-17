@@ -92,26 +92,26 @@ public class RobotMap {
     	return !intakeLimitSwitch.get();
     }
     public enum LiftLevel {
+    	Floor,
     	Switch,
-    	LowScale,
     	MidScale,
     	HighScale,
     	TopScale;
     	
     	double potValue() {
     		switch(this) {
+    		case Floor:
+    			return 101;
     		case Switch:
-    			return 85;
-    		case LowScale:
-    			return 61;
+    			return 89;
     		case MidScale:
-    			return 52;
+    			return 55;
     		case HighScale:
-    			return 44;
+    			return 41;
     		case TopScale:
-    			return 35;
+    			return 36;
     		default:
-    			return 95;
+    			return 101;
     		}
     	}
     }

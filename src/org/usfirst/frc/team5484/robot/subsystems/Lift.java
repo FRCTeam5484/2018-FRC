@@ -27,15 +27,16 @@ public class Lift extends PIDSubsystem {
     }
     public void moveLift() {
     	double speedValue = -Robot.oi.getDriverTwoStickValue(1);
+    	//System.out.println("Stick Valeu: " + speedValue + " Top Limit: " + RobotMap.isTopLimitReached() + " Bottom Limit: " + RobotMap.isBottomLimitReached() +" POT Value: " + RobotMap.liftPOT.get());
     	if(RobotMap.isTopLimitReached() && speedValue > 0 || RobotMap.isBottomLimitReached() && speedValue < 0)
     	{
     		stopLift();
-    		RobotMap.ledIndicators.SetColor(2, Color.RED);
-    		RobotMap.ledIndicators.Update();
+//    		RobotMap.ledIndicators.SetColor(2, Color.RED);
+//    		RobotMap.ledIndicators.Update();
     	}
     	else {
-    		RobotMap.ledIndicators.SetColor(2, Color.GREEN);
-    		RobotMap.ledIndicators.Update();
+//    		RobotMap.ledIndicators.SetColor(2, Color.GREEN);
+//    		RobotMap.ledIndicators.Update();
     		if(speedValue > .8 || speedValue < -.8)
     		{
     			getPIDController().disable();

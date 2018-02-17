@@ -17,10 +17,10 @@ public class OI
 	public static JoystickButton driverOneButton_GrabCube;
 	public static JoystickButton driverOneButton_EjectCube;
 	
+	public static JoystickButton driverTwoButton_HoldLift;
 	public static JoystickButton driverTwoButton_StopLift;
 	public static JoystickButton driverTwoButton_DropLift;
 	public static JoystickButton driverTwoButton_LiftSwitch;
-	public static JoystickButton driverTwoButton_LiftLowScale;
 	public static JoystickButton driverTwoButton_LiftMidScale;
 	public static JoystickButton driverTwoButton_LiftHighScale;
 	public static JoystickButton driverTwoButton_LiftTopScale;
@@ -44,17 +44,17 @@ public class OI
     	driverOneButton_EjectCube.whileHeld(new Intake_EjectCube(.7));
         
         // Driver Two Functions
-    	driverTwoButton_StopLift = new JoystickButton(driverTwo, 1);
+    	driverTwoButton_StopLift = new JoystickButton(driverTwo, 2);
     	driverTwoButton_StopLift.whenPressed(new Lift_StopLift());
     	
-    	driverTwoButton_DropLift = new JoystickButton(driverTwo, 2);
-    	driverTwoButton_DropLift.whenPressed(new Lift_DropLift());
+    	driverTwoButton_HoldLift = new JoystickButton(driverTwo, 3);
+    	driverTwoButton_HoldLift.whenPressed(new Lift_HoldLift());
     	
-    	driverTwoButton_LiftSwitch = new JoystickButton(driverTwo, 4);
-    	driverTwoButton_LiftSwitch.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.Switch.potValue()));
+    	driverTwoButton_DropLift = new JoystickButton(driverTwo, 4);
+    	driverTwoButton_DropLift.whenPressed(new Lift_DropLift());
         
-    	driverTwoButton_LiftLowScale = new JoystickButton(driverTwo, 5);
-    	driverTwoButton_LiftLowScale.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.LowScale.potValue()));
+    	driverTwoButton_LiftSwitch = new JoystickButton(driverTwo, 5);
+    	driverTwoButton_LiftSwitch.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.Switch.potValue()));
         
     	driverTwoButton_LiftMidScale = new JoystickButton(driverTwo, 6);
     	driverTwoButton_LiftMidScale.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.MidScale.potValue()));

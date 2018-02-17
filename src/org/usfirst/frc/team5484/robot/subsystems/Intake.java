@@ -29,15 +29,15 @@ public class Intake extends Subsystem {
     }
     public void CheckLight()
     {
-    	if(RobotMap.isCubeSeated())
-    	{
-    		RobotMap.ledIndicators.SetColor(1, Color.GREEN);
-    		RobotMap.ledIndicators.Update();
-    	}
-    	else
-    	{
-    		RobotMap.ledIndicators.SetColor(1, Color.RED);
-    		RobotMap.ledIndicators.Update();
-    	}
+//    	if(RobotMap.isCubeSeated())
+//    	{
+//    		RobotMap.ledIndicators.SetColor(1, Color.GREEN);
+//    		RobotMap.ledIndicators.Update();
+//    	}
+//    	else
+//    	{
+//    		RobotMap.ledIndicators.SetColor(1, Color.RED);
+//    		RobotMap.ledIndicators.Update();
+//    	}
     }
 }
