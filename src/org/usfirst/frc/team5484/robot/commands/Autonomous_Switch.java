@@ -5,9 +5,6 @@ import org.usfirst.frc.team5484.robot.subsystems.Lift;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
 public class Autonomous_Switch extends CommandGroup {
 	
     public Autonomous_Switch() {
