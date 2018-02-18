@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
-import org.usfirst.frc.team5484.robot.RobotMap.LiftLevel;
 import org.usfirst.frc.team5484.robot.commands.DriveTrain_TeleopMode;
 
 public class DriveTrain extends Subsystem {
@@ -39,26 +38,26 @@ public class DriveTrain extends Subsystem {
 		double potValue = liftPOT.get();
 		double leftSide = Robot.oi.getDriverOneStickValue(1);
 		double rightSide = Robot.oi.getDriverOneStickValue(5);
-		if(potValue > 80)
+		if(potValue > Lift.Switch-20)
 		{
 			// Full Power;
 		}
-		else if(potValue > 70)
+		else if(potValue > Lift.Switch-10)
 		{
 			leftSide = leftSide*.9;
 			rightSide = rightSide*.9;
 		}
-		else if(potValue > 50)
+		else if(potValue > Lift.MidScale-10)
 		{
 			leftSide = leftSide*.8;
 			rightSide = rightSide*.8;
 		}
-		else if(potValue > 38)
+		else if(potValue > Lift.HighScale-10)
 		{
 			leftSide = leftSide*.7;
 			rightSide = rightSide*.7;
 		}
-		else if(potValue > 30)
+		else if(potValue > Lift.TopScale-10)
 		{
 			leftSide = leftSide*.6;
 			rightSide = rightSide*.6;
@@ -68,9 +67,6 @@ public class DriveTrain extends Subsystem {
 			// Full Power
 		}
 		robotDrive.tankDrive(leftSide, rightSide, true);
-		RobotMap.driveTrainRightEncoder.setDistancePerPulse(-0.058);
-		System.out.println(RobotMap.driveTrainRightEncoder.getDistance());
-
 	}
 	public void stopMotors() {
 		robotDrive.arcadeDrive(0, 0);

@@ -11,7 +11,13 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class Lift extends PIDSubsystem {
-
+	
+	public static final double Floor = 101;
+	public static final double Switch = 89;
+	public static final double MidScale = 55;
+	public static final double HighScale = 41;
+	public static final double TopScale = 36;
+	
 	private final AnalogPotentiometer liftPOT = RobotMap.liftPOT;	
     public static final SpeedController liftMotor = RobotMap.liftMotor;
     

@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team5484.robot;
 import org.usfirst.frc.team5484.robot.commands.*;
+import org.usfirst.frc.team5484.robot.subsystems.Lift;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -54,16 +56,16 @@ public class OI
     	driverTwoButton_DropLift.whenPressed(new Lift_DropLift());
         
     	driverTwoButton_LiftSwitch = new JoystickButton(driverTwo, 5);
-    	driverTwoButton_LiftSwitch.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.Switch.potValue()));
+    	driverTwoButton_LiftSwitch.whenPressed(new Lift_MoveToPosition(Lift.Switch));
         
     	driverTwoButton_LiftMidScale = new JoystickButton(driverTwo, 6);
-    	driverTwoButton_LiftMidScale.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.MidScale.potValue()));
+    	driverTwoButton_LiftMidScale.whenPressed(new Lift_MoveToPosition(Lift.MidScale));
         
     	driverTwoButton_LiftHighScale = new JoystickButton(driverTwo, 7);
-    	driverTwoButton_LiftHighScale.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.HighScale.potValue()));
+    	driverTwoButton_LiftHighScale.whenPressed(new Lift_MoveToPosition(Lift.HighScale));
         
     	driverTwoButton_LiftTopScale = new JoystickButton(driverTwo, 8);
-    	driverTwoButton_LiftTopScale.whenPressed(new Lift_MoveToPosition(RobotMap.LiftLevel.TopScale.potValue()));
+    	driverTwoButton_LiftTopScale.whenPressed(new Lift_MoveToPosition(Lift.TopScale));
         
     	driverTwoButton_IntakeGrab = new JoystickButton(driverTwo, 9);
     	driverTwoButton_IntakeGrab.whileHeld(new Intake_GrabCube(.7));

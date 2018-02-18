@@ -16,11 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.util.Random;
 
-import org.usfirst.frc.team5484.robot.commands.DriveTrain_GoForwardFor12Inches;
-import org.usfirst.frc.team5484.robot.commands.DriveTrain_GoForwardForOneSecond;
-import org.usfirst.frc.team5484.robot.subsystems.Lift;
-import org.usfirst.frc.team5484.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team5484.robot.subsystems.Intake;
+import org.usfirst.frc.team5484.robot.commands.*;
+import org.usfirst.frc.team5484.robot.subsystems.*;
 
 import com.mach.LightDrive.Color;
 
@@ -56,7 +53,7 @@ public class Robot extends TimedRobot {
 		
 		//CameraServer.getInstance().startAutomaticCapture();
 		
-		autoChooser.addDefault("Drive Forward", new DriveTrain_GoForwardFor12Inches());
+		//autoChooser.addDefault("Drive Forward", new DriveTrain_GoForwardFor12Inches());
 		autoChooser.addObject("Drive for 1 second", new DriveTrain_GoForwardForOneSecond());
 		SmartDashboard.putData("Auto mode", autoChooser);
 		//SmartDashboard.putNumber("Gyro", RobotMap.driveTrainGyro.getAngle());

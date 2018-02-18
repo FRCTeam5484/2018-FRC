@@ -21,11 +21,6 @@ public class DriveTrain_TurnToAngle extends Command implements PIDOutput {
 	PIDController turnController;
 	double requestedAngle;
 	double rotateToAngleRate;
-	final double kP = 0.1;
-	final double kI = 0.001;
-	final double kD = 0.08;
-	final double kF = 0.00;
-	final double kToleranceDegrees = 1.0f;
 	double currentDegree;
 	Timer timer;
     // Gets speed and angle and stores is for PIDController
@@ -39,10 +34,10 @@ public class DriveTrain_TurnToAngle extends Command implements PIDOutput {
     	robotGyro.reset();
     	timer = new Timer();
     	timer.start();
-    	turnController = new PIDController(kP, kI, kD, kF, robotGyro, this);
+    	turnController = new PIDController(0.03, 0, 0, 0, robotGyro, this);
         turnController.setInputRange(-180.0f,  180.0f);
-        turnController.setOutputRange(-0.8, 0.8);
-        turnController.setAbsoluteTolerance(kToleranceDegrees);
+        turnController.setOutputRange(-0.5, 0.5);
+        turnController.setAbsoluteTolerance(2);
         turnController.setContinuous(true);
         turnController.setSetpoint(requestedAngle);
         turnController.enable();

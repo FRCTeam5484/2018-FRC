@@ -57,6 +57,7 @@ public class RobotMap {
 //        driveTrainUltrasonic.setAutomaticMode(true);
         // Initialize Encoders On DriveTrain
         driveTrainRightEncoder = new Encoder(3, 4, true, Encoder.EncodingType.k4X);
+        driveTrainRightEncoder.setDistancePerPulse(-0.058);
         // Initialize Gyro on DriveTrain
         driveTrainGyro = new ADXRS450_Gyro();
         
@@ -90,29 +91,5 @@ public class RobotMap {
     public static boolean isCubeSeated()
     {
     	return !intakeLimitSwitch.get();
-    }
-    public enum LiftLevel {
-    	Floor,
-    	Switch,
-    	MidScale,
-    	HighScale,
-    	TopScale;
-    	
-    	double potValue() {
-    		switch(this) {
-    		case Floor:
-    			return 101;
-    		case Switch:
-    			return 89;
-    		case MidScale:
-    			return 55;
-    		case HighScale:
-    			return 41;
-    		case TopScale:
-    			return 36;
-    		default:
-    			return 101;
-    		}
-    	}
     }
 }
