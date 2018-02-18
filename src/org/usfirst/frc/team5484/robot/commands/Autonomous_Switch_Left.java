@@ -5,9 +5,9 @@ import org.usfirst.frc.team5484.robot.subsystems.Lift;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class Autonomous_Switch extends CommandGroup {
+public class Autonomous_Switch_Left extends CommandGroup {
 	
-    public Autonomous_Switch() {
+    public Autonomous_Switch_Left() {
     	if(Robot.FieldSetup.charAt(0) == 'L')
     	{
 	    	addParallel(new DriveTrain_DriveStraightForInches(.7, 60), 10);
