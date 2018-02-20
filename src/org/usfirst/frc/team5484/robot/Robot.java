@@ -60,15 +60,14 @@ public class Robot extends TimedRobot {
 		CameraServer.getInstance().startAutomaticCapture();
 		
 		autoChooser.addDefault("Cross Line", new Autonomous_CrossLine());
-		autoChooser.addObject("Left - Switch", new Autonomous_Switch_Left());
-		autoChooser.addObject("Left - Scale", new Autonomous_Scale_Left());
-		autoChooser.addObject("Right - Switch", new Autonomous_Switch_Right());
-		autoChooser.addObject("Right - Scale", new Autonomous_Scale_Right());
-		autoChooser.addObject("Right - Scale-Switch", new Autonomous_ScaleSwitch_Right());
+		autoChooser.addObject("Left-Switch", new Autonomous_Switch_Left());
+		autoChooser.addObject("Left-Scale", new Autonomous_Scale_Left());
+		autoChooser.addObject("Left-Scale-Switch", new Autonomous_ScaleSwitch_Left());
+		autoChooser.addObject("Right-Switch", new Autonomous_Switch_Right());
+		autoChooser.addObject("Right-Scale", new Autonomous_Scale_Right());
+		autoChooser.addObject("Right-Scale-Switch", new Autonomous_ScaleSwitch_Right());
 		SmartDashboard.putData("Auto mode", autoChooser);
-		//SmartDashboard.putNumber("Gyro", RobotMap.driveTrainGyro.getAngle());
 		SmartDashboard.putString("Field Setup: ", FieldSetup);
-		SmartDashboard.putNumber("Lift POT: ", RobotMap.liftPOT.get());
 	}
 
 	@Override
