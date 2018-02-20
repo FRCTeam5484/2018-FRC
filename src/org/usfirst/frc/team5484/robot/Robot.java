@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
 	public static Hang hangSystem;
 	public static OI oi;
 	public static String RobotStatus = "Good";
-	public static String FieldSetup = "LLL";
+	public static String FieldSetup = "";
 
 	Command autonomousCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -37,19 +37,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		
-		if(DriverStation.getInstance().isFMSAttached())
-		{
-			FieldSetup = DriverStation.getInstance().getGameSpecificMessage();
-		}
-		else
-		{
-			FieldSetup = "LLL";
-//			Random r = new Random();
-//			String options = "LR";
-//			FieldSetup = Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))); 
-		}
-		
 		
 		driveTrain = new DriveTrain();
 		intakeSystem = new Intake();
@@ -94,15 +81,68 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		if(DriverStation.getInstance().isFMSAttached())
+		{
+			try {FieldSetup = DriverStation.getInstance().getGameSpecificMessage();}
+			catch(Exception ex){}
+		}
 	}
 
 	@Override
 	public void autonomousInit() {
-		
-		autonomousCommand = autoChooser.getSelected();
-		if (autonomousCommand != null) {
-			autonomousCommand.start();
+		if(DriverStation.getInstance().isFMSAttached())
+		{
+			try { FieldSetup = DriverStation.getInstance().getGameSpecificMessage(); } catch(Exception ex) {}
+			
+			if(FieldSetup.length() < 2)
+			{
+				int pullAttempts = 100;
+				while(FieldSetup.length() < 2 && pullAttempts > 0)
+				{
+					pullAttempts--;
+					try {
+						Thread.sleep(10);
+						FieldSetup = DriverStation.getInstance().getGameSpecificMessage();
+					} catch(Exception ex){}
+				}
+				if(FieldSetup.length() < 2)
+				{
+					autonomousCommand = new Autonomous_CrossLine();
+					autonomousCommand.start();
+				}
+				else {
+					autonomousCommand = autoChooser.getSelected();
+					if (autonomousCommand == null) {
+						autonomousCommand = new Autonomous_CrossLine();
+						autonomousCommand.start();
+					}
+					else
+					{
+						autonomousCommand.start();
+					}
+				}
+			}
+			else
+			{
+				autonomousCommand = autoChooser.getSelected();
+				if (autonomousCommand == null) {
+					autonomousCommand = new Autonomous_CrossLine();
+					autonomousCommand.start();
+				}
+				else
+				{
+					autonomousCommand.start();
+				}				
+			}
 		}
+		else
+		{
+			FieldSetup = "LLL";
+//			Random r = new Random();
+//			String options = "LR";
+//			FieldSetup = Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))); 
+		}
+		
 	}
 
 	@Override
