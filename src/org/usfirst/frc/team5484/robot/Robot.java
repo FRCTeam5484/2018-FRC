@@ -65,8 +65,6 @@ public class Robot extends TimedRobot {
 		autoChooser.addObject("Right - Switch", new Autonomous_Switch_Right());
 		autoChooser.addObject("Right - Scale", new Autonomous_Scale_Right());
 		autoChooser.addObject("Right - Scale-Switch", new Autonomous_ScaleSwitch_Right());
-		autoChooser.addObject("Middle - Switch", new Autonomous_Switch_Middle());
-		autoChooser.addObject("Middle - Scale", new Autonomous_Scale_Middle());
 		SmartDashboard.putData("Auto mode", autoChooser);
 		//SmartDashboard.putNumber("Gyro", RobotMap.driveTrainGyro.getAngle());
 		SmartDashboard.putString("Field Setup: ", FieldSetup);

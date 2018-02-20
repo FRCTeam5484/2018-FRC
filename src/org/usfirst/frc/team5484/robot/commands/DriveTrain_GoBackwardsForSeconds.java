@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DriveTrain_GoBackwardsForSeconds extends Command {
-    	Timer pastMilliseconds;
+    	Timer seconds;
     	double secondsToDrive;
     	
         public DriveTrain_GoBackwardsForSeconds(double seconds) {
@@ -17,14 +17,14 @@ public class DriveTrain_GoBackwardsForSeconds extends Command {
             secondsToDrive = seconds;
         }
         protected void initialize() {
-        	pastMilliseconds = new Timer();
-        	pastMilliseconds.start();
+        	seconds = new Timer();
+        	seconds.start();
         }
         protected void execute() {
         	Robot.driveTrain.driveForward(-.5);
         }
         protected boolean isFinished() {
-            return pastMilliseconds.get() > secondsToDrive;
+            return seconds.get() > secondsToDrive;
         }
         protected void end() {
         	Robot.driveTrain.stopMotors();

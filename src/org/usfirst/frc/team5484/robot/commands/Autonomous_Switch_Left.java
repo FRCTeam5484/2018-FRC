@@ -11,20 +11,23 @@ public class Autonomous_Switch_Left extends CommandGroup {
     	if(Robot.FieldSetup.charAt(0) == 'L')
     	{
 	        addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-	        addSequential(new DriveTrain_DriveStraightForInches(.7, 113));
+	        addSequential(new DriveTrain_DriveStraightForInches(.9, 107));
 	        addSequential(new Intake_EjectForSeconds(1));
-	        addSequential(new DriveTrain_DriveStraightForInches(-.7, 4));
+	        addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
+	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));
+	        
     	}
     	else
     	{	        
-	        addSequential(new DriveTrain_DriveStraightForInches(.7, 30));
-	        addSequential(new DriveTrain_TurnToAngle(90));
-	        addSequential(new DriveTrain_DriveStraightForInches(.7, 105));
-	        addSequential(new DriveTrain_TurnToAngle(-93));
-	        addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-	        addSequential(new DriveTrain_DriveStraightForInches(.7, 76));
-	        addSequential(new Intake_EjectForSeconds(1));
-	        addSequential(new DriveTrain_DriveStraightForInches(-.7, 4));
+    		addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
+    		addSequential(new DriveTrain_DriveStraightForInches(.7, 50));
+    		addSequential(new DriveTrain_TurnToAngle(90));
+    		addSequential(new DriveTrain_DriveStraightForInches(.7, 120));
+    		addSequential(new DriveTrain_TurnToAngle(-90));
+    		addSequential(new DriveTrain_DriveStraightForInches(.7, 30));
+    		addSequential(new Intake_EjectCube(.5));
+    		addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
+	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));
     	}
     }
 }

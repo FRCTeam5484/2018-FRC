@@ -56,9 +56,8 @@ public class DriveTrain_GoStraightBySeconds extends Command implements PIDOutput
     }
 
     protected void end() {
+    	turnController.disable();
     	Robot.driveTrain.stopMotors();
-    	timer.stop();
-    	timer.reset();
     }
 
     protected void interrupted() {
