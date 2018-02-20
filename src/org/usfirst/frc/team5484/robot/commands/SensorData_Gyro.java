@@ -2,14 +2,13 @@ package org.usfirst.frc.team5484.robot.commands;
 
 import org.usfirst.frc.team5484.robot.RobotMap;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class SensorData_Gyro extends Command {
-	ADXRS450_Gyro robotGyro = RobotMap.driveTrainGyro;
+	AHRS robotGyro = RobotMap.driveTrainGyro;
     public SensorData_Gyro() {
     }
 

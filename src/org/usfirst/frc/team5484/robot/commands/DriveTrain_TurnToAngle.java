@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
@@ -12,34 +14,33 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class DriveTrain_TurnToAngle extends Command implements PIDOutput {
 	
-	ADXRS450_Gyro robotGyro = RobotMap.driveTrainGyro;
-	PIDController turnController;
-	double requestedAngle;
-	double rotateToAngleRate;
-	double currentDegree;
-	Timer timer;
-    // Gets speed and angle and stores is for PIDController
-	public DriveTrain_TurnToAngle(double targetAngle) {
+	private AHRS robotGyro = RobotMap.driveTrainGyro;
+	private PIDController turnController;
+	private double rotateToAngleRate;
+	private double rotateToAngle;
+	private double currentDegree = 0;
+	private Timer timer;
+    
+	// Gets speed and angle and stores is for PIDController
+	public DriveTrain_TurnToAngle(double angle) {
     	requires(Robot.driveTrain);
-    	requestedAngle = targetAngle;
+    	rotateToAngle = angle;
     }
     
 	// Sets all the parameters for the PIDController
     protected void initialize() {
     	robotGyro.reset();
+    	currentDegree = 0;
     	timer = new Timer();
     	timer.start();
-    	turnController = new PIDController(0.03, 0, 0, 0, robotGyro, this);
-        turnController.setInputRange(-180.0f,  180.0f);
-        turnController.setOutputRange(-0.5, 0.5);
+    	turnController = new PIDController(0.05, 0, 0, 0, robotGyro, this);
+        turnController.setInputRange(-180,  180);
+        turnController.setOutputRange(-.78, .78);
         turnController.setAbsoluteTolerance(2);
-        turnController.setContinuous(true);
-        turnController.setSetpoint(requestedAngle);
+        turnController.setContinuous(false);
+        turnController.setSetpoint(rotateToAngle);
         turnController.enable();
     }
     
@@ -51,12 +52,9 @@ public class DriveTrain_TurnToAngle extends Command implements PIDOutput {
     
     // If not asking to turn, its finished
     protected boolean isFinished() {
-    	System.out.println("Error Correction: " + rotateToAngleRate + " Current Angle: " + currentDegree);
-    	return timer.get() > 2;
-    	//return false;
-//    	double HighValue = requestedAngle + kToleranceDegrees;
-//    	double LowValue = requestedAngle - kToleranceDegrees;
-//    	if(0.08 > rotateToAngleRate && (HighValue > currentDegree && currentDegree > LowValue))
+    	System.out.println("Error Correction: " + rotateToAngleRate + " Current Angle: " + currentDegree + " Current Targe: " + rotateToAngle);
+    	return turnController.onTarget();
+//    	if(timer.get() > 1.6)
 //    	{
 //    		return true;
 //    	}
@@ -67,6 +65,7 @@ public class DriveTrain_TurnToAngle extends Command implements PIDOutput {
     }
 
     protected void end() {
+    	turnController.disable();
     	Robot.driveTrain.stopMotors();
     }
 

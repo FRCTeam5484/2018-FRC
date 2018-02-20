@@ -38,6 +38,7 @@ public class DriveTrain extends Subsystem {
 		double potValue = liftPOT.get();
 		double leftSide = Robot.oi.getDriverOneStickValue(1);
 		double rightSide = Robot.oi.getDriverOneStickValue(5);
+		
 		if(potValue > Lift.Switch-20)
 		{
 			// Full Power;

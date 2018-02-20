@@ -3,6 +3,8 @@ package org.usfirst.frc.team5484.robot.commands;
 import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.RobotMap;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -14,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveTrain_GoStraightBySeconds extends Command implements PIDOutput{
 
-	ADXRS450_Gyro robotGyro = RobotMap.driveTrainGyro;
+	AHRS robotGyro = RobotMap.driveTrainGyro;
 	PIDController turnController;
 	double requestedSpeed;
 	double requestedSeconds;

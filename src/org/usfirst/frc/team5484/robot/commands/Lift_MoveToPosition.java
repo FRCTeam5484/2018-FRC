@@ -18,6 +18,7 @@ public class Lift_MoveToPosition extends Command {
     }
 
    protected void execute() {
+	   //System.out.println("POT Value: " + RobotMap.liftPOT.get() + " Requested Value: " + desiredPosition);
 	   Robot.liftSystem.enable();
    	   Robot.liftSystem.setSetpoint(desiredPosition);
     }

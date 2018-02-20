@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 public class Lift extends PIDSubsystem {
 	
 	public static final double Floor = 101;
-	public static final double Switch = 89;
-	public static final double MidScale = 55;
+	public static final double Switch = 80;
+	public static final double MidScale = 52;
 	public static final double HighScale = 41;
 	public static final double TopScale = 36;
 	
@@ -23,7 +23,7 @@ public class Lift extends PIDSubsystem {
     
     public Lift()
     {
-    	super("Lift", 1.0, 0.0, 0.0);
+    	super("Lift", 0.1, 0.0, 0.0);
         setAbsoluteTolerance(3);
         getPIDController().setContinuous(false);
     }
@@ -33,7 +33,7 @@ public class Lift extends PIDSubsystem {
     }
     public void moveLift() {
     	double speedValue = -Robot.oi.getDriverTwoStickValue(1);
-    	//System.out.println("Stick Valeu: " + speedValue + " Top Limit: " + RobotMap.isTopLimitReached() + " Bottom Limit: " + RobotMap.isBottomLimitReached() +" POT Value: " + RobotMap.liftPOT.get());
+    	//System.out.println(" POT Value: " + RobotMap.liftPOT.get());
     	if(RobotMap.isTopLimitReached() && speedValue > 0 || RobotMap.isBottomLimitReached() && speedValue < 0)
     	{
     		stopLift();

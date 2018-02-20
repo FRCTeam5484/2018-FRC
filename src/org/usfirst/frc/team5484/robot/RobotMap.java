@@ -2,6 +2,7 @@ package org.usfirst.frc.team5484.robot;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Spark;
 //import edu.wpi.first.wpilibj.Encoder;
@@ -9,9 +10,11 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import com.mach.LightDrive.LightDriveCAN;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 
 //import edu.wpi.first.wpilibj.Ultrasonic;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+//import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 public class RobotMap {
 	// Drive Train Hardware
@@ -21,7 +24,8 @@ public class RobotMap {
     public static SpeedController driveTrainRight2;
     //public static Ultrasonic driveTrainUltrasonic;
     public static Encoder driveTrainRightEncoder;
-    public static ADXRS450_Gyro driveTrainGyro;
+    //public static ADXRS450_Gyro driveTrainGyro;
+    public static AHRS driveTrainGyro;
     
     // Intake Hardware
     public static SpeedController intakeMotorLeft;
@@ -59,7 +63,13 @@ public class RobotMap {
         driveTrainRightEncoder = new Encoder(3, 4, true, Encoder.EncodingType.k4X);
         driveTrainRightEncoder.setDistancePerPulse(-0.058);
         // Initialize Gyro on DriveTrain
-        driveTrainGyro = new ADXRS450_Gyro();
+        try {
+        	driveTrainGyro = new AHRS(SPI.Port.kMXP);
+		}
+		catch(RuntimeException ex)
+		{
+			DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
+		}
         
         // Initialize Intake Hardware
         intakeMotorLeft = new Talon(4);
@@ -75,6 +85,7 @@ public class RobotMap {
         liftPOT = new AnalogPotentiometer(0, 108, 2);
         
         hangMotor = new Talon(7);
+        hangMotor.setInverted(true);
         
         // Initialize LightDrive12
         ledIndicators = new LightDriveCAN();

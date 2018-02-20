@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Autonomous_CrossLine extends CommandGroup {
 
     public Autonomous_CrossLine() {
-        addParallel(new DriveTrain_DriveStraightForInches(.7, 60), 10);
+        addParallel(new DriveTrain_DriveStraightForInches(.7, 114), 10);
         addSequential(new Lift_MoveToPosition(Lift.Switch));
     }
 }

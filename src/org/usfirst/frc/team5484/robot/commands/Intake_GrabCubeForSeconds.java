@@ -5,26 +5,27 @@ import org.usfirst.frc.team5484.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Lift_StopLift extends Command {
-	
-	Timer time;
+public class Intake_GrabCubeForSeconds extends Command {
 
-    public Lift_StopLift() {
-        requires(Robot.liftSystem);
+    Timer time;
+    public static double totalSeconds;
+    
+	public Intake_GrabCubeForSeconds(double seconds) {
+    	requires(Robot.intakeSystem);
+    	totalSeconds = seconds;
     }
 
     protected void initialize() {
-    	Robot.liftSystem.disable();
-    	Robot.liftSystem.stopLift();
     	time = new Timer();
     	time.start();
+    	Robot.intakeSystem.grabCube(.6);
     }
 
-    protected void execute() {
+    protected void execute() {    	
     }
 
     protected boolean isFinished() {
-        if(time.get() > .1)
+        if(time.get() > totalSeconds)
         {
         	return true;
         }
@@ -35,8 +36,9 @@ public class Lift_StopLift extends Command {
     }
 
     protected void end() {
-    	Robot.liftSystem.stopLift();
+    	Robot.intakeSystem.stopIntake();
     }
+
     protected void interrupted() {
     	end();
     }

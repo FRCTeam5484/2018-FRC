@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team5484.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -25,9 +26,10 @@ public class Robot extends TimedRobot {
 	public static DriveTrain driveTrain;
 	public static Intake intakeSystem;
 	public static Lift liftSystem;
+	public static Hang hangSystem;
 	public static OI oi;
 	public static String RobotStatus = "Good";
-	public static String FieldSetup;
+	public static String FieldSetup = "LLL";
 
 	Command autonomousCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -35,10 +37,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		driveTrain = new DriveTrain();
-		intakeSystem = new Intake();
-		liftSystem = new Lift();
-		oi = new OI();
 		
 		if(DriverStation.getInstance().isFMSAttached())
 		{
@@ -46,25 +44,33 @@ public class Robot extends TimedRobot {
 		}
 		else
 		{
-			Random r = new Random();
-			String options = "LR";
-			FieldSetup = Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))); 
+			FieldSetup = "LLL";
+//			Random r = new Random();
+//			String options = "LR";
+//			FieldSetup = Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))); 
 		}
 		
-		//CameraServer.getInstance().startAutomaticCapture();
+		
+		driveTrain = new DriveTrain();
+		intakeSystem = new Intake();
+		liftSystem = new Lift();
+		hangSystem = new Hang();
+		oi = new OI();
+		
+		CameraServer.getInstance().startAutomaticCapture();
 		
 		autoChooser.addDefault("Cross Line", new Autonomous_CrossLine());
 		autoChooser.addObject("Left - Switch", new Autonomous_Switch_Left());
 		autoChooser.addObject("Left - Scale", new Autonomous_Scale_Left());
 		autoChooser.addObject("Right - Switch", new Autonomous_Switch_Right());
 		autoChooser.addObject("Right - Scale", new Autonomous_Scale_Right());
+		autoChooser.addObject("Right - Scale-Switch", new Autonomous_ScaleSwitch_Right());
 		autoChooser.addObject("Middle - Switch", new Autonomous_Switch_Middle());
 		autoChooser.addObject("Middle - Scale", new Autonomous_Scale_Middle());
 		SmartDashboard.putData("Auto mode", autoChooser);
 		//SmartDashboard.putNumber("Gyro", RobotMap.driveTrainGyro.getAngle());
 		SmartDashboard.putString("Field Setup: ", FieldSetup);
 		SmartDashboard.putNumber("Lift POT: ", RobotMap.liftPOT.get());
-		
 	}
 
 	@Override
@@ -95,6 +101,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
+		
 		autonomousCommand = autoChooser.getSelected();
 		if (autonomousCommand != null) {
 			autonomousCommand.start();

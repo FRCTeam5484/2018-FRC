@@ -18,6 +18,8 @@ public class OI
 {
 	public static JoystickButton driverOneButton_GrabCube;
 	public static JoystickButton driverOneButton_EjectCube;
+	public static JoystickButton driverOneButton_Climb;
+	public static JoystickButton driverOneButton_Descend;
 	
 	public static JoystickButton driverTwoButton_HoldLift;
 	public static JoystickButton driverTwoButton_StopLift;
@@ -28,6 +30,8 @@ public class OI
 	public static JoystickButton driverTwoButton_LiftTopScale;
 	public static JoystickButton driverTwoButton_IntakeGrab;
 	public static JoystickButton driverTwoButton_IntakeEject;
+	
+	public static JoystickButton driverTwoButton_Turn90;
 	
 	public static JoystickButton liftSTOP;
 	
@@ -44,8 +48,17 @@ public class OI
         
     	driverOneButton_EjectCube = new JoystickButton(driverOne, 6);
     	driverOneButton_EjectCube.whileHeld(new Intake_EjectCube(.7));
+    	
+    	driverOneButton_Climb = new JoystickButton(driverOne, 3);
+    	driverOneButton_Climb.whileHeld(new Hang_Climb());
+    	
+    	driverOneButton_Descend = new JoystickButton(driverOne, 4);
+    	driverOneButton_Descend.whileHeld(new Hang_Descend());
         
         // Driver Two Functions
+//    	driverTwoButton_Turn90 = new JoystickButton(driverTwo, 1);
+//    	driverTwoButton_Turn90.whenPressed(new DriveTrain_TurnLeft90());
+    	
     	driverTwoButton_StopLift = new JoystickButton(driverTwo, 2);
     	driverTwoButton_StopLift.whenPressed(new Lift_StopLift());
     	
@@ -75,6 +88,7 @@ public class OI
                 
         SmartDashboard.putData("Take Cube In", new Intake_GrabCube(.7));
         SmartDashboard.putData("Eject Cube Out", new Intake_EjectCube(.7));
+        SmartDashboard.putData("Intake Cube for 2 seconds", new Intake_GrabCubeForSeconds(2));
     }
     
     public double getDriverOneStickValue(int joyStickAxis){

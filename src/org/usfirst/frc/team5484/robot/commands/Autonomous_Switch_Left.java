@@ -10,19 +10,21 @@ public class Autonomous_Switch_Left extends CommandGroup {
     public Autonomous_Switch_Left() {
     	if(Robot.FieldSetup.charAt(0) == 'L')
     	{
-	    	addParallel(new DriveTrain_DriveStraightForInches(.7, 60), 10);
-	        addSequential(new Lift_MoveToPosition(Lift.Switch));
-	        addSequential(new Intake_EjectCube(.5));
+	        addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
+	        addSequential(new DriveTrain_DriveStraightForInches(.7, 113));
+	        addSequential(new Intake_EjectForSeconds(1));
+	        addSequential(new DriveTrain_DriveStraightForInches(-.7, 4));
     	}
     	else
-    	{
-	        addSequential(new Lift_MoveToPosition(Lift.Switch));
-	        addSequential(new DriveTrain_TurnToAngle(90));
-	        addSequential(new DriveTrain_DriveStraightForInches(.7, 120));
-	        addSequential(new DriveTrain_TurnToAngle(-90));
-	        addParallel(new DriveTrain_DriveStraightForInches(.7, 30), 10);
+    	{	        
 	        addSequential(new DriveTrain_DriveStraightForInches(.7, 30));
-	        addSequential(new Intake_EjectCube(.5));
+	        addSequential(new DriveTrain_TurnToAngle(90));
+	        addSequential(new DriveTrain_DriveStraightForInches(.7, 105));
+	        addSequential(new DriveTrain_TurnToAngle(-93));
+	        addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
+	        addSequential(new DriveTrain_DriveStraightForInches(.7, 76));
+	        addSequential(new Intake_EjectForSeconds(1));
+	        addSequential(new DriveTrain_DriveStraightForInches(-.7, 4));
     	}
     }
 }

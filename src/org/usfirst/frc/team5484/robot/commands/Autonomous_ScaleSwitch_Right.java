@@ -4,24 +4,29 @@ import org.usfirst.frc.team5484.robot.Robot;
 import org.usfirst.frc.team5484.robot.subsystems.Lift;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-public class Autonomous_Switch_Right extends CommandGroup {
 
-    public Autonomous_Switch_Right() {
-    	if(Robot.FieldSetup.charAt(1) == 'R')
+public class Autonomous_ScaleSwitch_Right extends CommandGroup {
+
+    public Autonomous_ScaleSwitch_Right() {
+    	if(Robot.FieldSetup.charAt(1) == 'L')
     	{
-	        addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-	        addSequential(new DriveTrain_DriveStraightForInches(.9, 107));
+    		addParallel(new Lift_MoveToPosition(Lift.Switch),12);
+    		addSequential(new DriveTrain_DriveStraightForInches(.7, 240));
+    		addSequential(new DriveTrain_TurnToAngle(-87));
+    		addSequential(new DriveTrain_DriveStraightForInches(.7, 184));
+    		addSequential(new DriveTrain_TurnToAngle(90));    	
+	        addSequential(new Lift_MoveToPosition(Lift.MidScale),12);
+	        addSequential(new DriveTrain_DriveStraightForInches(.6, 40));
 	        addSequential(new Intake_EjectForSeconds(1));
-	        addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
-	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));
-	        
+	        addParallel(new DriveTrain_DriveStraightForInches(-.6, 6));
+	        addSequential(new Lift_MoveToPosition(Lift.Floor), 12);
     	}
     	else
-    	{	        
+    	{
     		addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-    		addSequential(new DriveTrain_DriveStraightForInches(.92, 242));
+    		addSequential(new DriveTrain_DriveStraightForInches(.95, 242));
     		addSequential(new DriveTrain_TurnToAngle(-38));
-    		addSequential(new Lift_MoveToPosition(Lift.MidScale), 12);
+    		addSequential(new Lift_MoveToPosition(Lift.HighScale), 12);
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new Lift_MoveToPosition(Lift.Floor), 12);
 	        addSequential(new DriveTrain_TurnToAngle(-105));
