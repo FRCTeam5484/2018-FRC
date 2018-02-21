@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team5484.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode;
+import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -29,7 +32,7 @@ public class Robot extends TimedRobot {
 	public static Hang hangSystem;
 	public static OI oi;
 	public static String RobotStatus = "Good";
-	public static String FieldSetup = "";
+	public static String FieldSetup = "RRR";
 
 	Command autonomousCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -44,7 +47,8 @@ public class Robot extends TimedRobot {
 		hangSystem = new Hang();
 		oi = new OI();
 		
-		CameraServer.getInstance().startAutomaticCapture();
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 30);
 		
 		autoChooser.addDefault("Cross Line", new Autonomous_CrossLine());
 		autoChooser.addObject("Left-Switch", new Autonomous_Switch_Left());
@@ -89,60 +93,58 @@ public class Robot extends TimedRobot {
 	}
 
 	@Override
-	public void autonomousInit() {
-		if(DriverStation.getInstance().isFMSAttached())
-		{
-			try { FieldSetup = DriverStation.getInstance().getGameSpecificMessage(); } catch(Exception ex) {}
-			
-			if(FieldSetup.length() < 2)
-			{
-				int pullAttempts = 100;
-				while(FieldSetup.length() < 2 && pullAttempts > 0)
-				{
-					pullAttempts--;
-					try {
-						Thread.sleep(10);
-						FieldSetup = DriverStation.getInstance().getGameSpecificMessage();
-					} catch(Exception ex){}
-				}
-				if(FieldSetup.length() < 2)
-				{
-					autonomousCommand = new Autonomous_CrossLine();
-					autonomousCommand.start();
-				}
-				else {
-					autonomousCommand = autoChooser.getSelected();
-					if (autonomousCommand == null) {
-						autonomousCommand = new Autonomous_CrossLine();
-						autonomousCommand.start();
-					}
-					else
-					{
-						autonomousCommand.start();
-					}
-				}
-			}
-			else
-			{
-				autonomousCommand = autoChooser.getSelected();
-				if (autonomousCommand == null) {
-					autonomousCommand = new Autonomous_CrossLine();
-					autonomousCommand.start();
-				}
-				else
-				{
-					autonomousCommand.start();
-				}				
-			}
+	public void autonomousInit() {		
+		autonomousCommand = autoChooser.getSelected();
+		if (autonomousCommand != null) {
+			autonomousCommand.start();
 		}
 		else
 		{
-			FieldSetup = "LLL";
-//			Random r = new Random();
-//			String options = "LR";
-//			FieldSetup = Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))) + Character.toString(options.charAt(r.nextInt(2))); 
+			autonomousCommand = new Autonomous_CrossLine();
+			autonomousCommand.start();
 		}
-		
+//		try { FieldSetup = DriverStation.getInstance().getGameSpecificMessage(); } catch(Exception ex) {}
+//		
+//		if(FieldSetup.length() < 2)
+//		{
+//			int pullAttempts = 100;
+//			while(FieldSetup.length() < 2 && pullAttempts > 0)
+//			{
+//				pullAttempts--;
+//				try {
+//					Thread.sleep(10);
+//					FieldSetup = DriverStation.getInstance().getGameSpecificMessage();
+//				} catch(Exception ex){}
+//			}
+//			if(FieldSetup.length() < 2)
+//			{
+//				autonomousCommand = new Autonomous_CrossLine();
+//				autonomousCommand.start();
+//			}
+//			else {
+//				autonomousCommand = autoChooser.getSelected();
+//				if (autonomousCommand == null) {
+//					autonomousCommand = new Autonomous_CrossLine();
+//					autonomousCommand.start();
+//				}
+//				else
+//				{
+//					autonomousCommand.start();
+//				}
+//			}
+//		}
+//		else
+//		{
+//			autonomousCommand = autoChooser.getSelected();
+//			if (autonomousCommand == null) {
+//				autonomousCommand = new Autonomous_CrossLine();
+//				autonomousCommand.start();
+//			}
+//			else
+//			{
+//				autonomousCommand.start();
+//			}				
+//		}		
 	}
 
 	@Override
