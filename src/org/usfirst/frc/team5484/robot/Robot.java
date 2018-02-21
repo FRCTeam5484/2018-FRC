@@ -49,6 +49,7 @@ public class Robot extends TimedRobot {
 		
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 30);
+		camera.setFPS(30);
 		
 		autoChooser.addDefault("Cross Line", new Autonomous_CrossLine());
 		autoChooser.addObject("Left-Switch", new Autonomous_Switch_Left());
