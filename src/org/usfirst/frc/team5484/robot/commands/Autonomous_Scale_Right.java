@@ -12,7 +12,7 @@ public class Autonomous_Scale_Right extends CommandGroup {
     	{
     		addParallel(new Lift_MoveToPosition(Lift.Switch),12);
     		addSequential(new DriveTrain_DriveStraightForInches(.7, 240));
-    		addSequential(new DriveTrain_TurnToAngle(-87));
+    		addSequential(new DriveTrain_TurnToAngle(-88));
     		addSequential(new DriveTrain_DriveStraightForInches(.7, 184));
     		addSequential(new DriveTrain_TurnToAngle(90));    	
 	        addSequential(new Lift_MoveToPosition(Lift.MidScale),12);

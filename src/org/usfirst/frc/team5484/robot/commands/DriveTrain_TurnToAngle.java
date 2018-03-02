@@ -52,7 +52,7 @@ public class DriveTrain_TurnToAngle extends Command implements PIDOutput {
     
     // If not asking to turn, its finished
     protected boolean isFinished() {
-    	System.out.println("Error Correction: " + rotateToAngleRate + " Current Angle: " + currentDegree + " Current Targe: " + rotateToAngle);
+    	//System.out.println("Error Correction: " + rotateToAngleRate + " Current Angle: " + currentDegree + " Current Targe: " + rotateToAngle);
     	return turnController.onTarget();
 //    	if(timer.get() > 1.6)
 //    	{

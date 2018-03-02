@@ -11,18 +11,18 @@ public class Autonomous_ScaleSwitch_Right extends CommandGroup {
     	if(Robot.FieldSetup.charAt(1) == 'L')
     	{
     		addParallel(new Lift_MoveToPosition(Lift.Switch),12);
-    		addSequential(new DriveTrain_DriveStraightForInches(.7, 240));
+    		addSequential(new DriveTrain_DriveStraightForInches(.9, 225));
     		addSequential(new DriveTrain_TurnToAngle(-87));
-    		addSequential(new DriveTrain_DriveStraightForInches(.7, 184));
+    		addSequential(new DriveTrain_DriveStraightForInches(.85, 184));
     		addSequential(new DriveTrain_TurnToAngle(90));    	
 	        addSequential(new Lift_MoveToPosition(Lift.MidScale),12);
-	        addSequential(new DriveTrain_DriveStraightForInches(.6, 40));
+	        addSequential(new DriveTrain_DriveStraightForInches(.75, 40));
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new DriveTrain_DriveStraightForInches(-.6, 6));
 	        addSequential(new Lift_MoveToPosition(Lift.Floor), 12);
 	        addSequential(new DriveTrain_TurnToAngle(105));
 	        addParallel(new Intake_GrabCubeForSeconds(4.5), 4.5);
-    	    addSequential(new DriveTrain_DriveStraightForInches(.6, 53)); 
+    	    addSequential(new DriveTrain_DriveStraightForInches(.75, 53)); 
     	    addSequential(new Lift_MoveToPosition(Lift.Switch));
     	    if(Robot.FieldSetup.charAt(0) == 'L')
     	    {
@@ -33,9 +33,9 @@ public class Autonomous_ScaleSwitch_Right extends CommandGroup {
     	    }
     	    else
     	    {
-    	    	addSequential(new DriveTrain_DriveStraightForInches(-.7, 6));
+    	    	addSequential(new DriveTrain_DriveStraightForInches(-.9, 6));
     	    	addSequential(new DriveTrain_TurnToAngle(45));
-    	    	addSequential(new DriveTrain_DriveStraightForInches(.7, 184));
+    	    	addSequential(new DriveTrain_DriveStraightForInches(.9, 180));
     	    	addSequential(new Lift_MoveToPosition(Lift.Switch));
     	    }
     	}
@@ -62,7 +62,7 @@ public class Autonomous_ScaleSwitch_Right extends CommandGroup {
     	    {
     	    	addSequential(new DriveTrain_DriveStraightForInches(-.7, 6));
     	    	addSequential(new DriveTrain_TurnToAngle(45));
-    	    	addSequential(new DriveTrain_DriveStraightForInches(.7, 184));
+    	    	addSequential(new DriveTrain_DriveStraightForInches(.9, 180));
     	    	addSequential(new Lift_MoveToPosition(Lift.Switch));
     	    }
     	}

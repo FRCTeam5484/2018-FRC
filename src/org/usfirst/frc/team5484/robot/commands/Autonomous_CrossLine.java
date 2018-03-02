@@ -12,6 +12,6 @@ public class Autonomous_CrossLine extends CommandGroup {
 
     public Autonomous_CrossLine() {
     	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-		addSequential(new DriveTrain_DriveStraightForInches(.7, 107));
+		addSequential(new DriveTrain_DriveStraightForInches(.6, 140));
     }
 }

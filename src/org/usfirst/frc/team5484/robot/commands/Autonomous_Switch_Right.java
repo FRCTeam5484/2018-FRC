@@ -10,20 +10,19 @@ public class Autonomous_Switch_Right extends CommandGroup {
     	if(Robot.FieldSetup.charAt(0) == 'R')
     	{
 	        addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-	        addSequential(new DriveTrain_DriveStraightForInches(.9, 107));
+	        addSequential(new DriveTrain_DriveStraightForInches(.65, 136), 7);
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
-	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));
-	        
+	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));	        
     	}
     	else
     	{	        
     		addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-    		addSequential(new DriveTrain_DriveStraightForInches(.7, 50));
+    		addSequential(new DriveTrain_DriveStraightForInches(.9, 40));
     		addSequential(new DriveTrain_TurnToAngle(-90));
-    		addSequential(new DriveTrain_DriveStraightForInches(.7, 120));
+    		addSequential(new DriveTrain_DriveStraightForInches(.9, 140));
     		addSequential(new DriveTrain_TurnToAngle(90));
-    		addSequential(new DriveTrain_DriveStraightForInches(.7, 30));
+    		addSequential(new DriveTrain_DriveStraightForInches(.85, 0), 5);
     		addSequential(new Intake_EjectCube(.5));
     		addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
 	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));

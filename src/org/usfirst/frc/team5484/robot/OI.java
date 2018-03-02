@@ -47,7 +47,7 @@ public class OI
     	driverOneButton_GrabCube.whileHeld(new Intake_GrabCube(.7));
         
     	driverOneButton_EjectCube = new JoystickButton(driverOne, 6);
-    	driverOneButton_EjectCube.whileHeld(new Intake_EjectCube(.7));
+    	driverOneButton_EjectCube.whileHeld(new Intake_EjectCube(.5));
     	
     	driverOneButton_Climb = new JoystickButton(driverOne, 3);
     	driverOneButton_Climb.whileHeld(new Hang_Climb());

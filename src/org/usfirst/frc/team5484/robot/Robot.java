@@ -48,8 +48,8 @@ public class Robot extends TimedRobot {
 		oi = new OI();
 		
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 30);
-		camera.setFPS(30);
+		camera.setVideoMode(PixelFormat.kMJPEG, 520, 240, 30);
+		//camera.setFPS(15);
 		
 		autoChooser.addDefault("Cross Line", new Autonomous_CrossLine());
 		autoChooser.addObject("Left-Switch", new Autonomous_Switch_Left());
@@ -95,57 +95,42 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {		
-		autonomousCommand = autoChooser.getSelected();
-		if (autonomousCommand != null) {
-			autonomousCommand.start();
+		FieldSetup = "";
+		try { FieldSetup = DriverStation.getInstance().getGameSpecificMessage(); } catch(Exception ex) {}
+		
+		if(FieldSetup.length() < 2)
+		{
+			int pullAttempts = 100;
+			while(FieldSetup.length() < 2 && pullAttempts > 0)
+			{
+				pullAttempts--;
+				try {
+					Thread.sleep(10);
+					FieldSetup = DriverStation.getInstance().getGameSpecificMessage();
+				} catch(Exception ex){}
+			}
+			if(FieldSetup.length() < 2)
+			{
+				autonomousCommand = new Autonomous_CrossLine();
+				autonomousCommand.start();
+			}
+			else {
+				autonomousCommand = autoChooser.getSelected();
+				autonomousCommand.start();
+			}
 		}
 		else
 		{
-			autonomousCommand = new Autonomous_CrossLine();
-			autonomousCommand.start();
-		}
-//		try { FieldSetup = DriverStation.getInstance().getGameSpecificMessage(); } catch(Exception ex) {}
-//		
-//		if(FieldSetup.length() < 2)
-//		{
-//			int pullAttempts = 100;
-//			while(FieldSetup.length() < 2 && pullAttempts > 0)
-//			{
-//				pullAttempts--;
-//				try {
-//					Thread.sleep(10);
-//					FieldSetup = DriverStation.getInstance().getGameSpecificMessage();
-//				} catch(Exception ex){}
-//			}
-//			if(FieldSetup.length() < 2)
-//			{
-//				autonomousCommand = new Autonomous_CrossLine();
-//				autonomousCommand.start();
-//			}
-//			else {
-//				autonomousCommand = autoChooser.getSelected();
-//				if (autonomousCommand == null) {
-//					autonomousCommand = new Autonomous_CrossLine();
-//					autonomousCommand.start();
-//				}
-//				else
-//				{
-//					autonomousCommand.start();
-//				}
-//			}
-//		}
-//		else
-//		{
-//			autonomousCommand = autoChooser.getSelected();
-//			if (autonomousCommand == null) {
-//				autonomousCommand = new Autonomous_CrossLine();
-//				autonomousCommand.start();
-//			}
-//			else
-//			{
-//				autonomousCommand.start();
-//			}				
-//		}		
+			autonomousCommand = autoChooser.getSelected();
+			if (autonomousCommand == null) {
+				autonomousCommand = new Autonomous_CrossLine();
+				autonomousCommand.start();
+			}
+			else
+			{
+				autonomousCommand.start();
+			}				
+		}		
 	}
 
 	@Override
