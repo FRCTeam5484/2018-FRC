@@ -11,7 +11,7 @@ public class Autonomous_Scale_Left extends CommandGroup {
 	private MatchData.OwnedSide ownedSide = null;
 	
     public Autonomous_Scale_Left() {
-    	
+    	ownedSide = MatchData.getOwnedSide(MatchData.GameFeature.SCALE);
 	    if (ownedSide == MatchData.OwnedSide.LEFT) {
 	    	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
     		addSequential(new DriveTrain_DriveStraightForInches(.8, 280));
@@ -44,10 +44,5 @@ public class Autonomous_Scale_Left extends CommandGroup {
 	    	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
     		addSequential(new DriveTrain_DriveStraightForInches(.6, 140));
 	    }
-    }
-    
-    @Override
-    public void initialize() {
-    	ownedSide = MatchData.getOwnedSide(MatchData.GameFeature.SCALE);
     }
 }

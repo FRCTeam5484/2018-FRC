@@ -13,6 +13,8 @@ public class Autonomous_ScaleSwitch_Left extends CommandGroup {
 	private MatchData.OwnedSide switchSide = null;
 
     public Autonomous_ScaleSwitch_Left() {
+    	ownedSide = MatchData.getOwnedSide(MatchData.GameFeature.SCALE);
+    	switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH);
     	if (ownedSide == MatchData.OwnedSide.LEFT) {
         	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
     		addSequential(new DriveTrain_DriveStraightForInches(.95, 242));
@@ -71,10 +73,5 @@ public class Autonomous_ScaleSwitch_Left extends CommandGroup {
         	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
     		addSequential(new DriveTrain_DriveStraightForInches(.6, 140));
         }
-    }
-    @Override
-    public void initialize() {
-    	ownedSide = MatchData.getOwnedSide(MatchData.GameFeature.SCALE);
-    	switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH);
     }
 }

@@ -98,6 +98,7 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {	
 		String chooserCommand = autoChooser.getSelected();
 		if(chooserCommand.equals("CrossLine")) {
+			autonomousCommand = new Autonomous_CrossLine();
 		}
 		else if(chooserCommand.equals("LeftSwitch")) {
 			autonomousCommand = new Autonomous_Switch_Left();
@@ -107,7 +108,7 @@ public class Robot extends TimedRobot {
 		}
 		else if(chooserCommand.equals("LeftScaleSwitch")) {
 			autonomousCommand = new Autonomous_ScaleSwitch_Left();
-		}
+		} 
 		else if(chooserCommand.equals("RightSwitch")) {
 			autonomousCommand = new Autonomous_Switch_Right();
 		}
@@ -119,7 +120,12 @@ public class Robot extends TimedRobot {
 		}
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
-		}				
+		}
+		else
+		{
+			autonomousCommand = new Autonomous_CrossLine();
+			autonomousCommand.start();
+		}
 	}
 
 	@Override
