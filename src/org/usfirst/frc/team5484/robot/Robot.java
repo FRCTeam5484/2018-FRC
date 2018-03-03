@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
 	public static String FieldSetupString = "";
 
 	Command autonomousCommand;
-	SendableChooser<Command> autoChooser = new SendableChooser<>();
+	SendableChooser<String> autoChooser = new SendableChooser<>();
 
 	@Override
 	public void robotInit() {
@@ -51,13 +51,20 @@ public class Robot extends TimedRobot {
 		camera.setVideoMode(PixelFormat.kMJPEG, 320, 240, 10);
 		//camera.setFPS(15);
 		
-		autoChooser.addDefault("Cross Line", new Autonomous_CrossLine());
-		autoChooser.addObject("Left-Switch", new Autonomous_Switch_Left());
-		autoChooser.addObject("Left-Scale", new Autonomous_Scale_Left());
-		autoChooser.addObject("Left-Scale-Switch", new Autonomous_ScaleSwitch_Left());
-		autoChooser.addObject("Right-Switch", new Autonomous_Switch_Right());
-		autoChooser.addObject("Right-Scale", new Autonomous_Scale_Right());
-		autoChooser.addObject("Right-Scale-Switch", new Autonomous_ScaleSwitch_Right());
+//		autoChooser.addDefault("Cross Line", new Autonomous_CrossLine());
+//		autoChooser.addObject("Left-Switch", new Autonomous_Switch_Left());
+//		autoChooser.addObject("Left-Scale", new Autonomous_Scale_Left());
+//		autoChooser.addObject("Left-Scale-Switch", new Autonomous_ScaleSwitch_Left());
+//		autoChooser.addObject("Right-Switch", new Autonomous_Switch_Right());
+//		autoChooser.addObject("Right-Scale", new Autonomous_Scale_Right());
+//		autoChooser.addObject("Right-Scale-Switch", new Autonomous_ScaleSwitch_Right());
+		autoChooser.addDefault("Cross Line", "CrossLine");
+		autoChooser.addObject("Left-Switch", "LeftSwitch");
+		autoChooser.addObject("Left-Scale", "LeftScale");
+		autoChooser.addObject("Left-Scale-Switch", "LeftScaleSwitch");
+		autoChooser.addObject("Right-Switch", "RightSwitch");
+		autoChooser.addObject("Right-Scale", "RightScale");
+		autoChooser.addObject("Right-Scale-Switch", "RightScaleSwitch");
 		SmartDashboard.putData("Auto mode", autoChooser);
 	}
 
@@ -88,8 +95,28 @@ public class Robot extends TimedRobot {
 	}
 
 	@Override
-	public void autonomousInit() {		
-		autonomousCommand = autoChooser.getSelected();
+	public void autonomousInit() {	
+		String chooserCommand = autoChooser.getSelected();
+		if(chooserCommand.equals("CrossLine")) {
+		}
+		else if(chooserCommand.equals("LeftSwitch")) {
+			autonomousCommand = new Autonomous_Switch_Left();
+		}
+		else if(chooserCommand.equals("LeftScale")) {
+			autonomousCommand = new Autonomous_Scale_Left();
+		}
+		else if(chooserCommand.equals("LeftScaleSwitch")) {
+			autonomousCommand = new Autonomous_ScaleSwitch_Left();
+		}
+		else if(chooserCommand.equals("RightSwitch")) {
+			autonomousCommand = new Autonomous_Switch_Right();
+		}
+		else if(chooserCommand.equals("RightScale")) {
+			autonomousCommand = new Autonomous_Scale_Right();
+		}
+		else if(chooserCommand.equals("RightScaleSwitch")) {
+			autonomousCommand = new Autonomous_ScaleSwitch_Right();
+		}
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}				

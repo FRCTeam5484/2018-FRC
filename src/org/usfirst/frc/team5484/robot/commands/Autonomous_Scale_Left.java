@@ -7,10 +7,12 @@ import org.usfirst.frc.team5484.robot.subsystems.Lift;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class Autonomous_Scale_Left extends CommandGroup {
-
+	
+	private MatchData.OwnedSide ownedSide = null;
+	
     public Autonomous_Scale_Left() {
-    	MatchData.OwnedSide side = MatchData.getOwnedSide(MatchData.GameFeature.SCALE);
-	    if (side == MatchData.OwnedSide.LEFT) {
+    	
+	    if (ownedSide == MatchData.OwnedSide.LEFT) {
 	    	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
     		addSequential(new DriveTrain_DriveStraightForInches(.8, 280));
     		addSequential(new DriveTrain_TurnToAngle(38));
@@ -22,7 +24,7 @@ public class Autonomous_Scale_Left extends CommandGroup {
     	    addSequential(new DriveTrain_DriveStraightForInches(.6, 75)); 
     	    addSequential(new Lift_MoveToPosition(Lift.Switch));
     	    addSequential(new DriveTrain_DriveStraightForInches(-.7, 6));
-	    } else if (side == MatchData.OwnedSide.RIGHT) {
+	    } else if (ownedSide == MatchData.OwnedSide.RIGHT) {
 	        addParallel(new Lift_MoveToPosition(Lift.Switch),12);
     		addSequential(new DriveTrain_DriveStraightForInches(.8, 215));
     		addSequential(new DriveTrain_TurnToAngle(93));
@@ -42,5 +44,10 @@ public class Autonomous_Scale_Left extends CommandGroup {
 	    	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
     		addSequential(new DriveTrain_DriveStraightForInches(.6, 140));
 	    }
+    }
+    
+    @Override
+    public void initialize() {
+    	ownedSide = MatchData.getOwnedSide(MatchData.GameFeature.SCALE);
     }
 }
