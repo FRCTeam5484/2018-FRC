@@ -13,11 +13,11 @@ public class Autonomous_Switch_Right extends CommandGroup {
     	ownedSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH);
     	if (ownedSide == MatchData.OwnedSide.LEFT) {
         	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-    		addSequential(new DriveTrain_DriveStraightForInches(.9, 30));
+    		addSequential(new DriveTrain_DriveStraightForInches(.9, 40));
     		addSequential(new DriveTrain_TurnToAngle(-80));
     		addSequential(new DriveTrain_DriveStraightForInches(.9, 140));
     		addSequential(new DriveTrain_TurnToAngle(90));
-    		addSequential(new DriveTrain_DriveStraightForInches(.85, 0), 5);
+    		addSequential(new DriveTrain_DriveStraightForInches(.85, 60), 5);
     		addSequential(new Intake_EjectCube(.5));
     		addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
 	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));

@@ -20,7 +20,7 @@ public class Autonomous_ScaleSwitch_Right extends CommandGroup {
     		addSequential(new DriveTrain_TurnToAngle(-87));
     		addSequential(new DriveTrain_DriveStraightForInches(.85, 184));
     		addSequential(new DriveTrain_TurnToAngle(90));    	
-	        addSequential(new Lift_MoveToPosition(Lift.MidScale),12);
+	        addSequential(new Lift_MoveToPosition(Lift.TopScale),12);
 	        addSequential(new DriveTrain_DriveStraightForInches(.75, 40));
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new DriveTrain_DriveStraightForInches(-.6, 6));

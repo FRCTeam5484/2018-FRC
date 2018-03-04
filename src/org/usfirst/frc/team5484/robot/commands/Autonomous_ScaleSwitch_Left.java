@@ -19,7 +19,7 @@ public class Autonomous_ScaleSwitch_Left extends CommandGroup {
         	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
     		addSequential(new DriveTrain_DriveStraightForInches(.95, 242));
     		addSequential(new DriveTrain_TurnToAngle(38));
-    		addSequential(new Lift_MoveToPosition(Lift.HighScale), 12);
+    		addSequential(new Lift_MoveToPosition(Lift.TopScale), 12);
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new Lift_MoveToPosition(Lift.Floor), 12);
 	        addSequential(new DriveTrain_TurnToAngle(105));

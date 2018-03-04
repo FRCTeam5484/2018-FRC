@@ -14,7 +14,7 @@ public class Autonomous_Switch_Left extends CommandGroup {
     	ownedSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH);
     	if (ownedSide == MatchData.OwnedSide.LEFT) {
         	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-	        addSequential(new DriveTrain_DriveStraightForInches(.65, 140), 7);
+	        addSequential(new DriveTrain_DriveStraightForInches(.65, 100), 7);
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
 	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));
@@ -24,7 +24,7 @@ public class Autonomous_Switch_Left extends CommandGroup {
     		addSequential(new DriveTrain_TurnToAngle(92));
     		addSequential(new DriveTrain_DriveStraightForInches(.9, 140));
     		addSequential(new DriveTrain_TurnToAngle(-90));
-    		addSequential(new DriveTrain_DriveStraightForInches(.85, 80), 5);
+    		addSequential(new DriveTrain_DriveStraightForInches(.85, 60), 5);
     		addSequential(new Intake_EjectCube(.5));
     		addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
 	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));

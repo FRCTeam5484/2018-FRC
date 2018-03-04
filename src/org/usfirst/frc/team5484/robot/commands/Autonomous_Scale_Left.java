@@ -14,9 +14,9 @@ public class Autonomous_Scale_Left extends CommandGroup {
     	ownedSide = MatchData.getOwnedSide(MatchData.GameFeature.SCALE);
 	    if (ownedSide == MatchData.OwnedSide.LEFT) {
 	    	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-    		addSequential(new DriveTrain_DriveStraightForInches(.8, 280));
+    		addSequential(new DriveTrain_DriveStraightForInches(.8, 232));
     		addSequential(new DriveTrain_TurnToAngle(38));
-    		addSequential(new Lift_MoveToPosition(Lift.HighScale), 12);
+    		addSequential(new Lift_MoveToPosition(Lift.TopScale), 12);
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new Lift_MoveToPosition(Lift.Floor), 12);
 	        addSequential(new DriveTrain_TurnToAngle(105));
@@ -26,11 +26,11 @@ public class Autonomous_Scale_Left extends CommandGroup {
     	    addSequential(new DriveTrain_DriveStraightForInches(-.7, 6));
 	    } else if (ownedSide == MatchData.OwnedSide.RIGHT) {
 	        addParallel(new Lift_MoveToPosition(Lift.Switch),12);
-    		addSequential(new DriveTrain_DriveStraightForInches(.8, 215));
+    		addSequential(new DriveTrain_DriveStraightForInches(.8, 200));
     		addSequential(new DriveTrain_TurnToAngle(93));
     		addSequential(new DriveTrain_DriveStraightForInches(.8, 184));
     		addSequential(new DriveTrain_TurnToAngle(-90));    	
-	        addSequential(new Lift_MoveToPosition(Lift.MidScale),12);
+	        addSequential(new Lift_MoveToPosition(Lift.TopScale),12);
 	        addSequential(new DriveTrain_DriveStraightForInches(.6, 40));
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new DriveTrain_DriveStraightForInches(-.6, 6));
