@@ -14,7 +14,7 @@ public class Autonomous_Scale_Right extends CommandGroup {
     	ownedSide = MatchData.getOwnedSide(MatchData.GameFeature.SCALE);
     	if (ownedSide == MatchData.OwnedSide.LEFT) {
         	addParallel(new Lift_MoveToPosition(Lift.Switch),12);
-    		addSequential(new DriveTrain_DriveStraightForInches(.8, 200));
+    		addSequential(new DriveTrain_DriveStraightForInches(.8, 208));
     		addSequential(new DriveTrain_TurnToAngle(-88));
     		addSequential(new DriveTrain_DriveStraightForInches(.8, 184));
     		addSequential(new DriveTrain_TurnToAngle(90));    	

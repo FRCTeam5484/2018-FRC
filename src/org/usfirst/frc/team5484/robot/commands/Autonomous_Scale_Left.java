@@ -26,7 +26,7 @@ public class Autonomous_Scale_Left extends CommandGroup {
     	    addSequential(new DriveTrain_DriveStraightForInches(-.7, 6));
 	    } else if (ownedSide == MatchData.OwnedSide.RIGHT) {
 	        addParallel(new Lift_MoveToPosition(Lift.Switch),12);
-    		addSequential(new DriveTrain_DriveStraightForInches(.8, 200));
+    		addSequential(new DriveTrain_DriveStraightForInches(.8, 208));
     		addSequential(new DriveTrain_TurnToAngle(93));
     		addSequential(new DriveTrain_DriveStraightForInches(.8, 184));
     		addSequential(new DriveTrain_TurnToAngle(-90));    	
