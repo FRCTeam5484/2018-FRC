@@ -33,29 +33,26 @@ public class Lift extends PIDSubsystem {
     }
     public void moveLift() {
     	double speedValue = -Robot.oi.getDriverTwoStickValue(1);
-    	//System.out.println(" POT Value: " + RobotMap.liftPOT.get());
-    	if(RobotMap.isTopLimitReached() && speedValue > 0 || RobotMap.isBottomLimitReached() && speedValue < 0)
+    	double currentPosition = liftPOT.get();
+    	
+    	if(speedValue > .8 && !RobotMap.isTopLimitReached() || speedValue < -.8 && !RobotMap.isBottomLimitReached())
     	{
-    		stopLift();
-//    		RobotMap.ledIndicators.SetColor(2, Color.RED);
-//    		RobotMap.ledIndicators.Update();
+    		getPIDController().disable();
+    		liftMotor.set(speedValue);
     	}
-    	else {
-//    		RobotMap.ledIndicators.SetColor(2, Color.GREEN);
-//    		RobotMap.ledIndicators.Update();
-    		if(speedValue > .8 || speedValue < -.8)
-    		{
-    			getPIDController().disable();
-    			liftMotor.set(speedValue);
-    		}
-    		else
-    		{
-    			liftMotor.set(0);
-    		}
+    	else if (currentPosition > 90)
+    	{
+    		getPIDController().disable();
+    		liftMotor.set(0);
+    	}
+    	else 
+    	{
+    		getPIDController().enable();
+    		getPIDController().setSetpoint(currentPosition);
     	}
     }
     public void raiseLift() {
-    	liftMotor.set(1);
+		liftMotor.set(1);
     }
     public void lowerLift() {
     	liftMotor.set(-1);

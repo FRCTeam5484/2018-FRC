@@ -9,17 +9,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class Autonomous_ScaleSwitch_Left extends CommandGroup {
 	
-	private MatchData.OwnedSide ownedSide = null;
+	private MatchData.OwnedSide scaleSide = null;
 	private MatchData.OwnedSide switchSide = null;
 
     public Autonomous_ScaleSwitch_Left() {
-    	ownedSide = MatchData.getOwnedSide(MatchData.GameFeature.SCALE);
+    	scaleSide = MatchData.getOwnedSide(MatchData.GameFeature.SCALE);
     	switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH);
-    	if (ownedSide == MatchData.OwnedSide.LEFT) {
+    	if (scaleSide == MatchData.OwnedSide.LEFT) {
         	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
     		addSequential(new DriveTrain_DriveStraightForInches(.95, 242));
     		addSequential(new DriveTrain_TurnToAngle(38));
-    		addSequential(new Lift_MoveToPosition(Lift.TopScale), 12);
+    		addSequential(new Lift_MoveToPosition(Lift.HighScale), 12);
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new Lift_MoveToPosition(Lift.Floor), 12);
 	        addSequential(new DriveTrain_TurnToAngle(105));
@@ -33,20 +33,13 @@ public class Autonomous_ScaleSwitch_Left extends CommandGroup {
 	    	    addSequential(new DriveTrain_DriveStraightForInches(-.9, 6));
 	    	    addParallel(new Lift_MoveToPosition(Lift.Floor), 12);
     	    }
-    	    else if(switchSide == MatchData.OwnedSide.RIGHT)
-    	    {
-    	    	addSequential(new DriveTrain_DriveStraightForInches(-.9, 6));
-    	    	addSequential(new DriveTrain_TurnToAngle(-45));
-    	    	addSequential(new DriveTrain_DriveStraightForInches(.9, 184));
-    	    	addSequential(new Lift_MoveToPosition(Lift.Switch));
-    	    }
-        } else if (ownedSide == MatchData.OwnedSide.RIGHT) {
+        } else if (scaleSide == MatchData.OwnedSide.RIGHT) {
         	addParallel(new Lift_MoveToPosition(Lift.Switch),12);
     		addSequential(new DriveTrain_DriveStraightForInches(.9, 225));
     		addSequential(new DriveTrain_TurnToAngle(98));
     		addSequential(new DriveTrain_DriveStraightForInches(.9, 184));
     		addSequential(new DriveTrain_TurnToAngle(-90));    	
-	        addSequential(new Lift_MoveToPosition(Lift.MidScale),12);
+	        addSequential(new Lift_MoveToPosition(Lift.HighScale),12);
 	        addSequential(new DriveTrain_DriveStraightForInches(.75, 35));
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new DriveTrain_DriveStraightForInches(-.6, 6));
@@ -61,13 +54,6 @@ public class Autonomous_ScaleSwitch_Left extends CommandGroup {
 	    	    addSequential(new Intake_EjectForSeconds(1));
 	    	    addSequential(new DriveTrain_DriveStraightForInches(-.9, 6));
 	    	    addParallel(new Lift_MoveToPosition(Lift.Floor), 12);
-    	    }
-    	    else if(switchSide == MatchData.OwnedSide.LEFT)
-    	    {
-    	    	addSequential(new DriveTrain_DriveStraightForInches(-.7, 6));
-    	    	addSequential(new DriveTrain_TurnToAngle(-45));
-    	    	addSequential(new DriveTrain_DriveStraightForInches(.9, 180));
-    	    	addSequential(new Lift_MoveToPosition(Lift.Switch));
     	    }
         } else {
         	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
