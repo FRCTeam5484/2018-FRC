@@ -61,9 +61,11 @@ public class Robot extends TimedRobot {
 		autoChooser.addDefault("Cross Line", "CrossLine");
 		autoChooser.addObject("Middle-Switch", "MiddleSwitch");
 		autoChooser.addObject("Left-Switch", "LeftSwitch");
+		autoChooser.addObject("Left-Scale (Switch Priority)", "LeftScaleSwitchPriority");
 		autoChooser.addObject("Left-Scale", "LeftScale");
 		autoChooser.addObject("Left-Scale-Switch", "LeftScaleSwitch");
 		autoChooser.addObject("Right-Switch", "RightSwitch");
+		autoChooser.addObject("Right-Scale (Switch Priority)", "RightScaleSwitchPriority");
 		autoChooser.addObject("Right-Scale", "RightScale");
 		autoChooser.addObject("Right-Scale-Switch", "RightScaleSwitch");
 		SmartDashboard.putData("Auto mode", autoChooser);
@@ -107,6 +109,9 @@ public class Robot extends TimedRobot {
 		else if(chooserCommand.equals("LeftSwitch")) {
 			autonomousCommand = new Autonomous_Switch_Left();
 		}
+		else if(chooserCommand.equals("LeftScaleSwitchPriority")) {
+			autonomousCommand = new Autonomous_ScaleSwitchPriority_Left();
+		}
 		else if(chooserCommand.equals("LeftScale")) {
 			autonomousCommand = new Autonomous_Scale_Left();
 		}
@@ -115,6 +120,9 @@ public class Robot extends TimedRobot {
 		} 
 		else if(chooserCommand.equals("RightSwitch")) {
 			autonomousCommand = new Autonomous_Switch_Right();
+		}
+		else if(chooserCommand.equals("RightScaleSwitchPriority")) {
+			autonomousCommand = new Autonomous_ScaleSwitchPriority_Right();
 		}
 		else if(chooserCommand.equals("RightScale")) {
 			autonomousCommand = new Autonomous_Scale_Right();
