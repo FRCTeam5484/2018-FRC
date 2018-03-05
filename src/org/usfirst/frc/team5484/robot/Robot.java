@@ -8,17 +8,13 @@
 package org.usfirst.frc.team5484.robot;
 
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoMode;
 import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import java.util.Random;
 
 import org.usfirst.frc.team5484.robot.commands.*;
 import org.usfirst.frc.team5484.robot.subsystems.*;
@@ -31,8 +27,6 @@ public class Robot extends TimedRobot {
 	public static Lift liftSystem;
 	public static Hang hangSystem;
 	public static OI oi;
-	public static String RobotStatus = "Good";
-	public static String FieldSetupString = "";
 
 	Command autonomousCommand;
 	SendableChooser<String> autoChooser = new SendableChooser<>();
@@ -49,15 +43,7 @@ public class Robot extends TimedRobot {
 		
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		camera.setVideoMode(PixelFormat.kMJPEG, 320, 240, 10);
-		//camera.setFPS(15);
-		
-//		autoChooser.addDefault("Cross Line", new Autonomous_CrossLine());
-//		autoChooser.addObject("Left-Switch", new Autonomous_Switch_Left());
-//		autoChooser.addObject("Left-Scale", new Autonomous_Scale_Left());
-//		autoChooser.addObject("Left-Scale-Switch", new Autonomous_ScaleSwitch_Left());
-//		autoChooser.addObject("Right-Switch", new Autonomous_Switch_Right());
-//		autoChooser.addObject("Right-Scale", new Autonomous_Scale_Right());
-//		autoChooser.addObject("Right-Scale-Switch", new Autonomous_ScaleSwitch_Right());
+
 		autoChooser.addDefault("Cross Line", "CrossLine");
 		autoChooser.addObject("Middle-Switch", "MiddleSwitch");
 		autoChooser.addObject("Left-Switch", "LeftSwitch");
@@ -68,27 +54,11 @@ public class Robot extends TimedRobot {
 		autoChooser.addObject("Right-Scale (Switch Priority)", "RightScaleSwitchPriority");
 		autoChooser.addObject("Right-Scale", "RightScale");
 		autoChooser.addObject("Right-Scale-Switch", "RightScaleSwitch");
-		SmartDashboard.putData("Auto mode", autoChooser);
+		SmartDashboard.putData("Auto mode: ", autoChooser);
 	}
 
 	@Override
 	public void disabledInit() {
-		if(RobotStatus.equals("Good"))
-		{
-			RobotMap.ledIndicators.SetColor(1, Color.GREEN);
-			RobotMap.ledIndicators.SetColor(2, Color.GREEN);
-			RobotMap.ledIndicators.SetColor(3, Color.GREEN);
-			RobotMap.ledIndicators.SetColor(4, Color.GREEN);
-			RobotMap.ledIndicators.Update();
-		}
-		else
-		{
-			RobotMap.ledIndicators.SetColor(1, Color.RED);
-			RobotMap.ledIndicators.SetColor(2, Color.RED);
-			RobotMap.ledIndicators.SetColor(3, Color.RED);
-			RobotMap.ledIndicators.SetColor(4, Color.RED);
-			RobotMap.ledIndicators.Update();
-		}
 		
 	}
 
