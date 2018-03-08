@@ -55,7 +55,7 @@ public class Lift extends PIDSubsystem {
 		liftMotor.set(1);
     }
     public void lowerLift() {
-    	liftMotor.set(-1);
+    	liftMotor.set(-.8);
     }
     public void stopLift() {
     	liftMotor.set(0);
