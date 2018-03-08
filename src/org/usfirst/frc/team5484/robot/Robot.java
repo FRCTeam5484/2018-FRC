@@ -46,10 +46,12 @@ public class Robot extends TimedRobot {
 
 		autoChooser.addDefault("Cross Line", "CrossLine");
 		autoChooser.addObject("Middle-Switch", "MiddleSwitch");
+		autoChooser.addObject("Left Cross Line (Switch Priority)", "LeftCrossLineSwitchOption");
 		autoChooser.addObject("Left-Switch", "LeftSwitch");
 		autoChooser.addObject("Left-Scale (Switch Priority)", "LeftScaleSwitchPriority");
 		autoChooser.addObject("Left-Scale", "LeftScale");
 		autoChooser.addObject("Left-Scale-Switch", "LeftScaleSwitch");
+		autoChooser.addObject("Right Cross Line (Switch Priority)", "RightCrossLineSwitchOption");
 		autoChooser.addObject("Right-Switch", "RightSwitch");
 		autoChooser.addObject("Right-Scale (Switch Priority)", "RightScaleSwitchPriority");
 		autoChooser.addObject("Right-Scale", "RightScale");
@@ -72,6 +74,12 @@ public class Robot extends TimedRobot {
 		String chooserCommand = autoChooser.getSelected();
 		if(chooserCommand.equals("CrossLine")) {
 			autonomousCommand = new Autonomous_CrossLine();
+		}
+		else if(chooserCommand.equals("LeftCrossLineSwitchOption")) {
+			autonomousCommand = new Autonomous_CrossLineSwitchOption_Left();
+		}
+		else if(chooserCommand.equals("RightCrossLineSwitchOption")) {
+			autonomousCommand = new Autonomous_CrossLineSwitchOption_Right();
 		}
 		else if(chooserCommand.equals("MiddleSwitch")) {
 			autonomousCommand = new Autonomous_Switch_Middle();
