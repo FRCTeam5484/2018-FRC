@@ -45,6 +45,10 @@ public class Lift extends PIDSubsystem {
      		getPIDController().disable();
      		liftMotor.set(0);
      	}
+     	else
+     	{
+     		stopLift();
+     	}
     }
     public void raiseLift() {
 		liftMotor.set(1);
