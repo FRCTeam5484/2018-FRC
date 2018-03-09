@@ -73,12 +73,14 @@ public class DriveTrain extends Subsystem {
 		robotDrive.arcadeDrive(0, 0);
 	}
 	public void driveForward(double speed)	{
+		System.out.println("POT Value: " + RobotMap.liftPOT.get() + " Encoder: " + RobotMap.driveTrainRightEncoder.getDistance());
 		robotDrive.arcadeDrive(speed, 0);
 	}
 	public void turnToAngle(double angle)	{
 		robotDrive.arcadeDrive(0, -angle);
 	}
 	public void driveStraight(double speed, double angle)	{
+		System.out.println("POT Value: " + RobotMap.liftPOT.get() + " Encoder: " + RobotMap.driveTrainRightEncoder.getDistance());
 		robotDrive.arcadeDrive(-speed, -angle);
 	}
 }

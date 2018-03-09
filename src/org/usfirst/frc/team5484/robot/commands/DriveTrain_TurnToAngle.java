@@ -37,7 +37,7 @@ public class DriveTrain_TurnToAngle extends Command implements PIDOutput {
     	timer.start();
     	turnController = new PIDController(0.05, 0, 0, 0, robotGyro, this);
         turnController.setInputRange(-180,  180);
-        turnController.setOutputRange(-.78, .78);
+        turnController.setOutputRange(-.8, .8);
         turnController.setAbsoluteTolerance(2);
         turnController.setContinuous(false);
         turnController.setSetpoint(rotateToAngle);
