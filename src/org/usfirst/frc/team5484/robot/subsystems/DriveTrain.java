@@ -81,6 +81,6 @@ public class DriveTrain extends Subsystem {
 	}
 	public void driveStraight(double speed, double angle)	{
 		//System.out.println("POT Value: " + RobotMap.liftPOT.get() + " Encoder: " + RobotMap.driveTrainRightEncoder.getDistance());
-		robotDrive.arcadeDrive(-speed, 0);
+		robotDrive.arcadeDrive(-speed, -.3);
 	}
 }
