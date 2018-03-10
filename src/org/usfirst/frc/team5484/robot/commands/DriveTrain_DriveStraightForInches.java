@@ -35,11 +35,11 @@ public class DriveTrain_DriveStraightForInches extends Command implements PIDOut
         turnController.setAbsoluteTolerance(0);
         turnController.setContinuous(true);
         turnController.setSetpoint(0);
-        turnController.enable();
+        turnController.disable();
     }
     protected void execute() {
     	//System.out.println("POT Value: " + RobotMap.liftPOT.get() + " Encoder: " + RobotMap.driveTrainRightEncoder.getDistance());
-    	Robot.driveTrain.driveStraight(driveSpeed, rotateToAngle);
+    	Robot.driveTrain.driveStraight(driveSpeed, 0);
     }
 
     protected boolean isFinished() {

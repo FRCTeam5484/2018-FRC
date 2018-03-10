@@ -18,9 +18,9 @@ public class Autonomous_Switch_Middle extends CommandGroup {
     		addSequential(new DriveTrain_DriveStraightForInches(.9, 10));
 	        addSequential(new DriveTrain_TurnToAngle(-45));
 	        addParallel(new Lift_MoveToPosition(Lift.Switch), 3);
-	        addSequential(new DriveTrain_DriveStraightForInches(.9, 60));
+	        addSequential(new DriveTrain_DriveStraightForInches(.9, 55));
 	        addSequential(new DriveTrain_TurnToAngle(35));
-	        addSequential(new DriveTrain_DriveStraightForInches(.9, 18));
+	        addSequential(new DriveTrain_DriveStraightForInches(.9, 22));
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
 	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));
@@ -28,9 +28,9 @@ public class Autonomous_Switch_Middle extends CommandGroup {
         	addSequential(new DriveTrain_DriveStraightForInches(.9, 10));
 	        addSequential(new DriveTrain_TurnToAngle(45));
 	        addParallel(new Lift_MoveToPosition(Lift.Switch), 3);
-	        addSequential(new DriveTrain_DriveStraightForInches(.9, 60));
+	        addSequential(new DriveTrain_DriveStraightForInches(.9, 55));
 	        addSequential(new DriveTrain_TurnToAngle(-35));
-	        addSequential(new DriveTrain_DriveStraightForInches(.9, 18));
+	        addSequential(new DriveTrain_DriveStraightForInches(.9, 22));
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
 	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));
