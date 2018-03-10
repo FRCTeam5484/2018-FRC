@@ -14,13 +14,19 @@ public class Autonomous_CrossLineSwitchOption_Left extends CommandGroup {
 	
     public Autonomous_CrossLineSwitchOption_Left() {
     	switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH);
-    	addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
-		addSequential(new DriveTrain_DriveStraightForInches(.8, 140));
-		if(switchSide == MatchData.OwnedSide.LEFT)
-		{
-			addSequential(new DriveTrain_TurnToAngle(90));
-			addSequential(new DriveTrain_DriveStraightForInches(.8, 6));
-			addSequential(new Intake_EjectForSeconds(2));
-		}
+    	if (switchSide == MatchData.OwnedSide.LEFT) {
+        	addParallel(new Lift_MoveToPosition(Lift.Switch));
+	        addSequential(new DriveTrain_DriveStraightForInches(.8, 115), 5);
+	        addSequential(new DriveTrain_TurnToAngle(90), 2);
+	        addSequential(new DriveTrain_DriveStraightForInches(.8, 10), 2);
+	        addSequential(new Intake_EjectForSeconds(1));
+	        addParallel(new Lift_MoveToPosition(Lift.Floor));
+	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));	
+        }
+    	else
+    	{
+    		addParallel(new Lift_MoveToPosition(Lift.Switch), 4);
+    		addSequential(new DriveTrain_DriveStraightForInches(.8, 140));
+    	}
     }
 }
