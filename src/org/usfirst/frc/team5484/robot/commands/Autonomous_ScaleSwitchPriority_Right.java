@@ -18,15 +18,15 @@ public class Autonomous_ScaleSwitchPriority_Right extends CommandGroup {
     	switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH);
     	if (switchSide == MatchData.OwnedSide.RIGHT) {
     		addParallel(new Lift_MoveToPosition(Lift.Switch));
-    		addSequential(new DriveTrain_DriveStraightForInches(.8, 130));
+    		addSequential(new DriveTrain_DriveStraightForInches(.75, 130));
     		addSequential(new DriveTrain_TurnToAngle(-90));
-	        addSequential(new DriveTrain_DriveStraightForInches(.8, 7), 2);
+	        addSequential(new DriveTrain_DriveStraightForInches(.75, 7), 2);
 	        addSequential(new Intake_EjectForSeconds(1));
-	        addParallel(new Lift_MoveToPosition(Lift.Floor));
-	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));
+	        //addParallel(new Lift_MoveToPosition(Lift.Floor));
+	        addSequential(new DriveTrain_DriveStraightForInches(-.6, 10));
         } else if (scaleSide == MatchData.OwnedSide.LEFT) {
         	addParallel(new Lift_MoveToPosition(Lift.Switch),12);
-    		addSequential(new DriveTrain_DriveStraightForInches(.9, 160));
+    		addSequential(new DriveTrain_DriveStraightForInches(.75, 160));
     		addSequential(new DriveTrain_TurnToAngle(-75));
 //    		addSequential(new DriveTrain_DriveStraightForInches(.9, 135));
 //    		addSequential(new DriveTrain_TurnToAngle(82));    	

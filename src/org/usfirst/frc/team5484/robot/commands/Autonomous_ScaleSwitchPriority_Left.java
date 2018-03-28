@@ -18,26 +18,26 @@ public class Autonomous_ScaleSwitchPriority_Left extends CommandGroup {
     	switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH);
     	if (switchSide == MatchData.OwnedSide.LEFT) {
     		addParallel(new Lift_MoveToPosition(Lift.Switch));
-    		addSequential(new DriveTrain_DriveStraightForInches(.8, 130));
+    		addSequential(new DriveTrain_DriveStraightForInches(.75, 130));
     		addSequential(new DriveTrain_TurnToAngle(90));
-	        addSequential(new DriveTrain_DriveStraightForInches(.8, 10), 2);
+	        addSequential(new DriveTrain_DriveStraightForInches(.75, 10), 3);
 	        addSequential(new Intake_EjectForSeconds(1));
-	        addParallel(new Lift_MoveToPosition(Lift.Floor));
-	        addSequential(new DriveTrain_DriveStraightForInches(-.9, 10));
+	        //addParallel(new Lift_MoveToPosition(Lift.Floor));
+	        addSequential(new DriveTrain_DriveStraightForInches(-.6, 10));
         } else if (scaleSide == MatchData.OwnedSide.LEFT) {
         	addParallel(new Lift_MoveToPosition(Lift.HighScale), 8);
-    		addSequential(new DriveTrain_DriveStraightForInches(.88, 210));
+    		addSequential(new DriveTrain_DriveStraightForInches(.75, 210));
     		addSequential(new DriveTrain_TurnToAngle(50), 2);
     		addSequential(new DriveTrain_DriveStraightForInches(.6, 10));
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addSequential(new DriveTrain_DriveStraightForInches(-.6, 5));
-	        addParallel(new Lift_MoveToPosition(Lift.Floor), 12);
-	        addSequential(new DriveTrain_TurnToAngle(105));
-	        addParallel(new Intake_GrabCubeForSeconds(4.5), 4);
-    	    addSequential(new DriveTrain_DriveStraightForInches(.6, 53)); 
+	        //addParallel(new Lift_MoveToPosition(Lift.Floor), 12);
+	        //addSequential(new DriveTrain_TurnToAngle(105));
+	        //addParallel(new Intake_GrabCubeForSeconds(4.5), 4);
+    	    //addSequential(new DriveTrain_DriveStraightForInches(.6, 53)); 
         } else if (scaleSide == MatchData.OwnedSide.RIGHT) {
         	addParallel(new Lift_MoveToPosition(Lift.Switch),12);
-    		addSequential(new DriveTrain_DriveStraightForInches(.9, 170));
+    		addSequential(new DriveTrain_DriveStraightForInches(.75, 170));
     		addSequential(new DriveTrain_TurnToAngle(79), 2);
 //    		addSequential(new DriveTrain_DriveStraightForInches(.9, 135));
 //    		addSequential(new DriveTrain_TurnToAngle(-82));    	
