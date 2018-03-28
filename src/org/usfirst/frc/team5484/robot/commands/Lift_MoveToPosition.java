@@ -17,10 +17,16 @@ public class Lift_MoveToPosition extends Command {
     protected void initialize() {
     }
 
-   protected void execute() {
-	   //System.out.println("POT Value: " + RobotMap.liftPOT.get() + " Requested Value: " + desiredPosition);
-	   Robot.liftSystem.enable();
-   	   Robot.liftSystem.setSetpoint(desiredPosition);
+    protected void execute() {
+	   if(RobotMap.liftPOT.get() < 10)
+	   {
+		   Robot.liftSystem.disable();
+	   }
+	   else
+	   {
+		   Robot.liftSystem.enable();
+	   	   Robot.liftSystem.setSetpoint(desiredPosition);
+	   }
     }
 
     protected boolean isFinished() {

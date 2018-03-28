@@ -21,6 +21,7 @@ public class OI
 	public static JoystickButton driverOneButton_Climb;
 	public static JoystickButton driverOneButton_Descend;
 	
+	public static JoystickButton driverTwoButton_PortalLift;
 	public static JoystickButton driverTwoButton_HoldLift;
 	public static JoystickButton driverTwoButton_StopLift;
 	public static JoystickButton driverTwoButton_DropLift;
@@ -56,8 +57,8 @@ public class OI
     	driverOneButton_Descend.whileHeld(new Hang_Descend());
         
         // Driver Two Functions
-//    	driverTwoButton_Turn90 = new JoystickButton(driverTwo, 1);
-//    	driverTwoButton_Turn90.whenPressed(new DriveTrain_TurnLeft90());
+    	driverTwoButton_PortalLift = new JoystickButton(driverTwo, 1);
+    	driverTwoButton_PortalLift.whenPressed(new Lift_MoveToPosition(Lift.Portal));
     	
     	driverTwoButton_StopLift = new JoystickButton(driverTwo, 2);
     	driverTwoButton_StopLift.whenPressed(new Lift_StopLift());

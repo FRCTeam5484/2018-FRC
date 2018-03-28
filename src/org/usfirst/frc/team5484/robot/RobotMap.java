@@ -81,7 +81,7 @@ public class RobotMap {
         liftMotor = new Talon(6);
         liftTopLimitSwitch = new DigitalInput(0);
         liftBottomLimitSwitch = new DigitalInput(1);
-        liftPOT = new AnalogPotentiometer(0, 108, 2);
+        liftPOT = new AnalogPotentiometer(1, 108, 2);
         
         hangMotor = new Talon(7);
         hangMotor.setInverted(true);

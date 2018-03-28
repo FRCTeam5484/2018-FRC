@@ -14,6 +14,7 @@ public class Lift extends PIDSubsystem {
 	
 	public static final double Floor = 101;
 	public static final double Switch = 80;
+	public static final double Portal = 72;
 	public static final double MidScale = 52;
 	public static final double HighScale = 41;
 	public static final double TopScale = 36;
@@ -34,7 +35,6 @@ public class Lift extends PIDSubsystem {
     public void moveLift() {
     	double speedValue = -Robot.oi.getDriverTwoStickValue(1);
      	double currentPosition = liftPOT.get();
-
      	if(speedValue > .8 && !RobotMap.isTopLimitReached() || speedValue < -.8 && !RobotMap.isBottomLimitReached())
      	{
      		getPIDController().disable();
@@ -66,7 +66,7 @@ public class Lift extends PIDSubsystem {
     @Override
     protected void usePIDOutput(double output) {
     	double reverseOutput = -output;
-    	if(RobotMap.isTopLimitReached() && reverseOutput > 0 || RobotMap.isBottomLimitReached() && reverseOutput < 0)
+    	if(RobotMap.isTopLimitReached() && reverseOutput > 0 || RobotMap.isBottomLimitReached() && reverseOutput < 0 || RobotMap.liftPOT.get() < 10)
     	{
     		RobotMap.ledIndicators.SetColor(2, Color.RED);
     		RobotMap.ledIndicators.Update();
