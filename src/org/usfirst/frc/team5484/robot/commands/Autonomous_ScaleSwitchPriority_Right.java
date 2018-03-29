@@ -28,6 +28,7 @@ public class Autonomous_ScaleSwitchPriority_Right extends CommandGroup {
         	addParallel(new Lift_MoveToPosition(Lift.Switch),12);
     		addSequential(new DriveTrain_DriveStraightForInches(.75, 160));
     		addSequential(new DriveTrain_TurnToAngle(-75));
+    		// Disabled
 //    		addSequential(new DriveTrain_DriveStraightForInches(.9, 135));
 //    		addSequential(new DriveTrain_TurnToAngle(82));    	
 //	        addSequential(new Lift_MoveToPosition(Lift.HighScale),12);
