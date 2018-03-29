@@ -41,7 +41,7 @@ public class Autonomous_ScaleSwitchPriority_Right extends CommandGroup {
 //    	    addSequential(new Lift_MoveToPosition(Lift.Switch));
         } else if (scaleSide == MatchData.OwnedSide.RIGHT) {
         	addParallel(new Lift_MoveToPosition(Lift.HighScale), 12);
-    		addSequential(new DriveTrain_DriveStraightForInches(.95, 170));
+    		addSequential(new DriveTrain_DriveStraightForInches(.75, 240));
     		addSequential(new DriveTrain_TurnToAngle(-20), 1);
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new Lift_MoveToPosition(Lift.Floor), 12);

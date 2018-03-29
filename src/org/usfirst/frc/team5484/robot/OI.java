@@ -44,10 +44,10 @@ public class OI
     	driverTwo = new Joystick(1);
         
         // Driver One Functions
-    	driverOneButton_GrabCube = new JoystickButton(driverOne, 5);
+    	driverOneButton_GrabCube = new JoystickButton(driverOne, 6);
     	driverOneButton_GrabCube.whileHeld(new Intake_GrabCube(.7));
         
-    	driverOneButton_EjectCube = new JoystickButton(driverOne, 6);
+    	driverOneButton_EjectCube = new JoystickButton(driverOne, 5);
     	driverOneButton_EjectCube.whileHeld(new Intake_EjectCube(.5));
     	
     	driverOneButton_Climb = new JoystickButton(driverOne, 3);

@@ -16,7 +16,7 @@ public class Autonomous_Switch_Middle extends CommandGroup {
     	switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH);
     	if (switchSide == MatchData.OwnedSide.LEFT) {
     		addSequential(new DriveTrain_DriveStraightForInches(.8, 10));
-	        addSequential(new DriveTrain_TurnToAngle(-45));
+	        addSequential(new DriveTrain_TurnToAngle(-45), 1);
 	        addParallel(new Lift_MoveToPosition(Lift.Switch), 3);
 	        addSequential(new DriveTrain_DriveStraightForInches(.8, 55));
 	        addSequential(new DriveTrain_TurnToAngle(35));
@@ -28,9 +28,9 @@ public class Autonomous_Switch_Middle extends CommandGroup {
         	addSequential(new DriveTrain_DriveStraightForInches(.8, 10));
 	        addSequential(new DriveTrain_TurnToAngle(45));
 	        addParallel(new Lift_MoveToPosition(Lift.Switch), 3);
-	        addSequential(new DriveTrain_DriveStraightForInches(.8, 55));
+	        addSequential(new DriveTrain_DriveStraightForInches(.8, 65));
 	        addSequential(new DriveTrain_TurnToAngle(-35));
-	        addSequential(new DriveTrain_DriveStraightForInches(.8, 22));
+	        addSequential(new DriveTrain_DriveStraightForInches(.8, 22), 3);
 	        addSequential(new Intake_EjectForSeconds(1));
 	        addParallel(new Lift_MoveToPosition(Lift.Floor), 4);
 	        addSequential(new DriveTrain_DriveStraightForInches(-.8, 10));
